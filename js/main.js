@@ -30,7 +30,13 @@ $(document).ready(function () {
 	//For Reload page & view all
 	allItems();
 	$("#view_new").click(function () {
-		newItems();
+		allItems();
+	});
+	$("#view_software").click(function () {
+		allItems_software();
+	});
+	$("#view_magazine").click(function () {
+		allItems_magazine();
 	});
 
 	//For keywords Searching
@@ -127,13 +133,13 @@ $(document).ready(function () {
 		publicationDate();
 	});
 
-	//function for show all items
+	//function for show all items of book
 	function allItems() {
 		$(".items-table").empty();
 		$(".loading-animation").delay(2000).show(function () {
 			$(".loading-animation").hide();
 			$.getJSON("books.json", function (result) {
-				$(".items-table").append("<div class='items' style='height: 35px;'><h2 style='margin-left:20px;'>All \\ All Items<h2></div>");
+				$(".items-table").append("<div class='items' style='height: 35px;'><h2 style='margin-left:20px;'>All \\ All Items \\ Book<h2></div>");
 				$.each(result, function (index, value) {
 					let str = '<div class="items">' +
 						'<div><b style="margin: 10px">' + (index + 1) + '</b></div>' +
@@ -146,22 +152,40 @@ $(document).ready(function () {
 		});
 	}
 
-	//function for show new items, first 35th books
-	function newItems() {
+	//function for show all items of software
+	function allItems_software() {
 		$(".items-table").empty();
 		$(".loading-animation").delay(2000).show(function () {
 			$(".loading-animation").hide();
-			$.getJSON("books.json", function (result) {
-				$(".items-table").append("<div class='items' style='height: 35px;'><h2 style='margin-left:20px;'>New \\ New Items<h2></div>");
-				for (i = 0; i < 35; i++) {
+			$.getJSON("software.json", function (result) {
+				$(".items-table").append("<div class='items' style='height: 35px;'><h2 style='margin-left:20px;'>All \\ All Items \\ Software<h2></div>");
+				$.each(result, function (index, value) {
 					let str = '<div class="items">' +
-						'<div><b style="margin: 10px">' + (i + 1) + '</b></div>' +
-						'<div class="bookName" style="margin-left: 150px;"><b>Book Title: ' + result[i].title + '</b></div>' +
-						'<img src = "' + result[i].imageLink + '" height="120px" style="margin: -10px 20px 10px 40px">' +
+						'<div><b style="margin: 10px">' + (index + 1) + '</b></div>' +
+						'<div class="bookName" style="margin-left: 150px;"><b>Magazine Title: ' + value.name + '</b></div>' +
+						'<img src = "' + value.image + '" height="100px" style="margin: -10px 20px 10px 40px">' +
 						'</div>';
-					console.log("success: " + i);
 					$(".items-table").append(str);
-				}
+				});
+			});
+		});
+	}
+	
+	//function for show all items of maganzine
+	function allItems_magazine() {
+		$(".items-table").empty();
+		$(".loading-animation").delay(2000).show(function () {
+			$(".loading-animation").hide();
+			$.getJSON("magazine.json", function (result) {
+				$(".items-table").append("<div class='items' style='height: 35px;'><h2 style='margin-left:20px;'>All \\ All Items \\ Magazine<h2></div>");
+				$.each(result, function (index, value) {
+					let str = '<div class="items">' +
+						'<div><b style="margin: 10px">' + (index + 1) + '</b></div>' +
+						'<div class="bookName" style="margin-left: 150px;"><b>Software Name: ' + value.name + '</b></div>' +
+						'<img src = "' + value.image + '" height="120px" style="margin: -10px 20px 10px 40px">' +
+						'</div>';
+					$(".items-table").append(str);
+				});
 			});
 		});
 	}
