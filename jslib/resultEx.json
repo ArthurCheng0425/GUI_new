@@ -1,0 +1,8 @@
+{
+"studid": [1111,2222,3333,4444],
+"name": ["Mary","Peter","David","John"],
+"lastname": ["Chan","Wong","Cheung","Leung"],
+"age": [22,21,19,20],
+"sex": ["female","male","male","male"]
+}
+

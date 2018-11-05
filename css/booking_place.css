@@ -1,0 +1,163 @@
+/*set all elements margin*/
+.book_place_container {
+	margin: 20px;
+}
+
+.book_place_container .messageBox {
+	height: 30px;
+	width: 100%;
+	border: 2px solid #6ad400;
+	border-radius: 8px;
+	padding-top: 10px;
+	background-color: #eeffdd;
+	font-size: 20px;
+	font-family: sans-serif;
+}
+
+.book_place_container .day_button .btn_prev {
+	background-color: grey;
+	color: white;
+}
+
+.book_place_container .day_button .btn_prev:hover {
+	cursor: pointer;
+	background-color: red;
+	color: white;
+}
+
+.book_place_container .day_button .btn_next {
+	background-color: grey;
+	color: white;
+}
+
+.book_place_container .day_button .btn_next:hover {
+	cursor: pointer;
+	background-color: red;
+	color: white;
+}
+
+/*timetable background color*/
+.book_place_container .booking_timetable table {
+	background-color: #f4f4f4;
+}
+
+/*hover table tr*/
+.book_place_container .booking_timetable tr:hover {
+	background-color: antiquewhite;
+}
+
+.book_place_container .booking_timetable button {
+	background-color: #e6e6e6;
+	border-radius: 10%;
+	height: 25px;
+	width: 35px;
+}
+
+/*hover table button*/
+.book_place_container .booking_timetable button:hover {
+	cursor: pointer;
+	background-color: black;
+	color: #ffffff;
+}
+
+.book_place_container .booking_timetable table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.book_place_container .book_place_title {
+	text-align: center;
+}
+
+.book_place_container .booking_timetable td {
+	text-align: center;
+}
+
+.book_place_container .day_button .btn_prev {
+	float: left;
+}
+
+.book_place_container .day_button .btn_next {
+	float: right;
+}
+
+.book_place_container .book_place_information table {
+	border-collapse: collapse;
+}
+
+.book_place_container .book_place_information td {
+	padding: 10px;
+}
+
+.book_place_container .place_form_container .btn_back {
+	background-color: #e6e6e6;
+	border-radius: 10%;
+	height: 25px;
+	width: 70px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.book_place_container .place_form_container .btn_back:hover {
+	cursor: pointer;
+	background-color: #bebebe;
+}
+
+.book_place_container .place_form_container tr:hover {
+	background-color: antiquewhite;
+}
+
+.book_place_container .book_place_information input[type=text] {
+	height: 20px;
+}
+
+.book_place_information input[type=button],
+.book_place_information input[type=reset] {
+	background-color: #e6e6e6;
+	border-radius: 10%;
+	height: 25px;
+	width: 70px;
+}
+
+.book_place_information input[type=button]:hover,
+.book_place_information input[type=reset]:hover {
+	cursor: pointer;
+	background-color: #bebebe;
+}
+
+/*animation_effect start*/
+
+/*animation_square*/
+.book_place_container .animation_effect_container {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	opacity: 0;
+}
+
+.book_place_container .animation_effect_container .animation {
+	margin-top: 50px;
+	height: 600px;
+	width: 600px;
+	background-color: azure;
+}
+
+/*animation_picture*/
+.animation_effect_container .animation_picture_container {
+	position: absolute;
+	top: 130px;
+	left: 135px;
+}
+
+/*animation message*/
+.book_place_container .animation_effect_container .animation_message_container {
+	position: absolute;
+	top: 500px;
+	left: 80px;
+	font-family: sans-serif;
+}
+
+.animation_effect_container .animation_message_container .animation_message {
+	font-size: 24px;
+}
+/*animation_effect end*/

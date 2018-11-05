@@ -1,0 +1,72 @@
+/*animation-container start*/
+.animation_container {
+	opacity: 0;
+}
+
+.fade-in-container {
+	margin-top: 10px;
+	z-index: 0;
+}
+
+.circle {
+	margin: auto;
+	height: 700px;
+	width: 700px;
+	border-radius: 50%;
+	background-color: #c6c4c4;
+}
+
+.vtc_logo_container {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	top: 230px;
+	z-index: 2;
+}
+
+.vtc_logo_container #logo {
+	display: block;
+	margin: auto;
+}
+
+.progress_bar_container {
+	position: absolute;
+	left: 50%;
+	top: 450px;
+	transform: translateX(-50%);
+	z-index: 2;
+}
+
+.progress_bar_container .progress_bar {
+	height: 30px;
+	width: 300px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	background-color: grey;
+}
+
+.progress_bar_container .progress {
+	height: 30px;
+	width: 0%;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	background-color: #00baf6;
+}
+
+.progress_message_container {
+	position: absolute;
+	left: 50%;
+	top: 457px;
+	transform: translateX(-50%);
+	z-index: 2;
+}
+
+.progress_message_container .progress_message {
+	font-family: Arial, Helvetica, sans-serif;
+	color: white;
+}
+/*animation container end*/

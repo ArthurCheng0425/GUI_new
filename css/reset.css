@@ -1,0 +1,11 @@
+#password_check {
+    height: 10px;
+    width: 240px;
+    background-color: #cbcbcb;
+    border-radius: 6px
+}
+
+#password_strength {
+    height: 10px;
+    border-radius: 6px;
+}

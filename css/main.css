@@ -1,0 +1,168 @@
+body {
+  background-color: #e5e5e5;
+  /*Background-Color*/
+}
+
+.header {
+  position: fixed;
+  width: 100%;
+  height: 92px;
+  background-color: #002157;
+  /*BLUE*/
+  color: white;
+  top: 0px;
+  left: 0px;
+}
+
+.heading {
+  margin-left: 20px;
+  font-family: "Comfortaa", "Helvetica", sans-serif;
+}
+
+#search_bar {
+  height: 25px;
+  width: 300px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+#go {
+  height: 29px;
+  width: 50px;
+  background-color: midnightblue;
+  border: 1px solid white;
+  color: white;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.headText {
+  font-size: 12px;
+  font-family: 'Comfortaa', 'Helvetica', sans-serif;
+}
+
+.side-navigation-contain {
+  background-color: #e5e5e5;
+  position: fixed;
+  height: 100%;
+  width: 220px;
+  top: 10px;
+  left: 0px;
+  margin-top: 83px;
+  padding-left: 10px;
+  z-index: 1;
+}
+
+.time-selector {
+  margin-top: 20px;
+}
+
+.sn-filter {
+  color: darkblue;
+  margin-left: 20px;
+}
+
+.sn-filter:hover {
+  text-decoration: underline;
+}
+
+.items-table {
+  top: 0px;
+  left: 0px;
+  margin-top: 95px;
+  margin-left: 230px;
+  width: 900px;
+  height: auto;
+  background-color: white;
+}
+
+.items {
+  margin-top: 3px;
+  box-shadow: -5px 0px 5px grey;
+  font-family: 'Comfortaa', 'Helvetica', sans-serif;
+}
+
+.items:hover {
+  background-color: #fffaf0;
+}
+
+#advance_search {
+  border-radius: 5px;
+}
+
+#advance_search:hover {
+  background-color: red;
+  border: 2px solid white;
+  color: aliceblue;
+}
+
+.advance_search_bar {
+  width: 895px;
+  height: 100px;
+  margin: 80px 0px -90px 230px;
+  background-color: #fff;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.advance_search_label {
+  margin-left: 20px;
+}
+
+#as_btn:hover {
+  background-color: midnightblue;
+  color: aliceblue;
+  box-shadow: 2px 2px 5px black;
+}
+
+.account_info {
+  content: "";
+  height: 300px;
+  width: 250px;
+  background-color: white;
+  border: 1px solid grey;
+  border-radius: 5px;
+  color: black;
+  top: 85px;
+  right: 10px;
+  position: fixed;
+}
+
+.triangle {
+  position: fixed;
+  top: 80px;
+  right: 30px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 30px 30px 30px;
+  border-color: transparent transparent #ffffff transparent;
+  z-index: 2;
+}
+
+.account_info_content {
+  margin: 30px;
+}
+
+.logout_btn{
+  height: 30px;
+  width: 80px;
+  border-radius: 10px;
+  background-color: royalblue;
+  color: white;
+}
+
+/*room booking start*/
+.permission_function {
+  position: fixed;
+  left: 14px;
+  margin-top: 40px;
+  text-align: left;
+  color: midnightblue;
+}
+
+.permission_function:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+/*room booking end*/
