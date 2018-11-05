@@ -175,3 +175,8 @@ p a:hover {
 input {
   color: white;
 }
+
+/*view password button*/
+#view_password {
+	cursor: pointer;
+}
