@@ -97,19 +97,22 @@ $(document).ready(function () {
 	$(".sn-filter").click(function () {
 		let header = $(this).attr("headers");
 		let selected_type = $(this).attr("id");
+		let isType = true;
+		if(selected_type == "view_new" || selected_type == "view_magazine" || selected_type == "view_software"){
+			isType = false;
+		}
 		let i = 1;
 		$(".items-table").empty();
 		$(".loading-animation").show();
-		setTimeout(
+		if(isType){
+			setTimeout(
 			function () {
 				$(".loading-animation").hide();
 				$.getJSON("books.json", function (result) {
 					console.log(($(this).attr("id")));
-					if (selected_type != "view_new") {
-						$(".items-table").append("<div class='items' style='height: 35px;'><h2 style='margin-left:20px;'>" +
-							header + " \\ " + selected_type +
-							"<h2></div>");
-					}
+					$(".items-table").append("<div class='items' style='height: 35px;'><h2 style='margin-left:20px;'>" +
+						header + " \\ " + selected_type +
+						"<h2></div>");
 					$.each(result, function (index, value) {
 						if (selected_type == value.language || selected_type == value.category) {
 							let str = '<div class="items">' +
@@ -122,7 +125,8 @@ $(document).ready(function () {
 						}
 					});
 				});
-			}, 2000);
+			}, 2000);	
+		}
 	});
 
 	//For PUBLICATION DATE Searching
