@@ -55,10 +55,13 @@ $(document).ready(function () {
 						if (value.title.indexOf(keywords) != -1) {
 							let str = '<div class="items">' +
 								'<div><b style="margin: 10px">' + (i++) + '</b></div>' +
-								'<div class="bookName" style="margin-left: 150px;"><b>Book Title: ' + value.title + '</b></div>' +
-								'<img src = "' + value.imageLink + '" height="120px" style="margin: -10px 20px 10px 40px">' +
+								'<div class="bookName" style="margin-left: 150px;"><b>Book Title: ' + value.title + '</b><br/><br>' +
+								'<b>Country: ' + value.country + '</b><br/><br/>' +
+								'<b>Language: ' + value.language + '</b></div>' +
+								'<img src = "' + value.imageLink + '" height="120px" style="margin: -80px 20px 10px 40px;">' +
+								'<button class="preview" style="margin-bottom: 20px;">Preview</button>' +
+								'<button class="reserve" style="margin-left: 5px;">Reserve</button>'+
 								'</div>';
-							console.log(value.title + " " + keywords);
 							$(".items-table").append(str);
 						}
 					});
@@ -82,8 +85,12 @@ $(document).ready(function () {
 						if (value.title.indexOf(keywords) != -1) {
 							let str = '<div class="items">' +
 								'<div><b style="margin: 10px">' + (i++) + '</b></div>' +
-								'<div class="bookName" style="margin-left: 150px;"><b>Book Title: ' + value.title + '</b></div>' +
-								'<img src = "' + value.imageLink + '" height="120px" style="margin: -10px 20px 10px 40px">' +
+								'<div class="bookName" style="margin-left: 150px;"><b>Book Title: ' + value.title + '</b><br/><br>' +
+								'<b>Country: ' + value.country + '</b><br/><br/>' +
+								'<b>Language: ' + value.language + '</b></div>' +
+								'<img src = "' + value.imageLink + '" height="120px" style="margin: -80px 20px 10px 40px;">' +
+								'<button class="preview" style="margin-bottom: 20px;">Preview</button>' +
+								'<button class="reserve" style="margin-left: 5px;">Reserve</button>'+
 								'</div>';
 							console.log(value.title + " " + keywords);
 							$(".items-table").append(str);
@@ -98,34 +105,38 @@ $(document).ready(function () {
 		let header = $(this).attr("headers");
 		let selected_type = $(this).attr("id");
 		let isType = true;
-		if(selected_type == "view_book" || selected_type == "view_magazine" || selected_type == "view_software"){
+		if (selected_type == "view_book" || selected_type == "view_magazine" || selected_type == "view_software") {
 			isType = false;
 		}
 		let i = 1;
 		$(".items-table").empty();
 		$(".loading-animation").show();
-		if(isType){
+		if (isType) {
 			setTimeout(
-			function () {
-				$(".loading-animation").hide();
-				$.getJSON("books.json", function (result) {
-					console.log(($(this).attr("id")));
-					$(".items-table").append("<div class='items' style='height: 35px;'><h2 style='margin-left:20px;'>" +
-						header + " \\ " + selected_type +
-						"<h2></div>");
-					$.each(result, function (index, value) {
-						if (selected_type == value.language || selected_type == value.category) {
-							let str = '<div class="items">' +
+				function () {
+					$(".loading-animation").hide();
+					$.getJSON("books.json", function (result) {
+						console.log(($(this).attr("id")));
+						$(".items-table").append("<div class='items' style='height: 35px;'><h2 style='margin-left:20px;'>" +
+							header + " \\ " + selected_type +
+							"<h2></div>");
+						$.each(result, function (index, value) {
+							if (selected_type == value.language || selected_type == value.category) {
+								let str = '<div class="items">' +
 								'<div><b style="margin: 10px">' + (i++) + '</b></div>' +
-								'<div class="bookName" style="margin-left: 150px;"><b>Book Title: ' + value.title + '</b></div>' +
-								'<img src = "' + value.imageLink + '" height="120px" style="margin: -10px 20px 10px 40px">' +
+								'<div class="bookName" style="margin-left: 150px;"><b>Book Title: ' + value.title + '</b><br/><br>' +
+								'<b>Country: ' + value.country + '</b><br/><br/>' +
+								'<b>Language: ' + value.language + '</b></div>' +
+								'<img src = "' + value.imageLink + '" height="120px" style="margin: -80px 20px 10px 40px;">' +
+								'<button class="preview" style="margin-bottom: 20px;">Preview</button>' +
+								'<button class="reserve" style="margin-left: 5px;">Reserve</button>'+
 								'</div>';
-							console.log("success");
-							$(".items-table").append(str);
-						}
+								console.log("success");
+								$(".items-table").append(str);
+							}
+						});
 					});
-				});
-			}, 2000);	
+				}, 2000);
 		}
 	});
 
@@ -146,10 +157,14 @@ $(document).ready(function () {
 				$(".items-table").append("<div class='items' style='height: 35px;'><h2 style='margin-left:20px;'>All \\ Book<h2></div>");
 				$.each(result, function (index, value) {
 					let str = '<div class="items">' +
-						'<div><b style="margin: 10px">' + (index + 1) + '</b></div>' +
-						'<div class="bookName" style="margin-left: 150px;"><b>Book Title: ' + value.title + '</b></div>' +
-						'<img src = "' + value.imageLink + '" height="120px" style="margin: -10px 20px 10px 40px">' +
-						'</div>';
+								'<div><b style="margin: 10px">' + (index+1) + '</b></div>' +
+								'<div class="bookName" style="margin-left: 150px;"><b>Book Title: ' + value.title + '</b><br/><br>' +
+								'<b>Country: ' + value.country + '</b><br/><br/>' +
+								'<b>Language: ' + value.language + '</b></div>' +
+								'<img src = "' + value.imageLink + '" height="120px" style="margin: -80px 20px 10px 40px;">' +
+								'<button class="preview" style="margin-bottom: 20px;">Preview</button>' +
+								'<button class="reserve" style="margin-left: 5px;">Reserve</button>'+
+								'</div>';
 					$(".items-table").append(str);
 				});
 			});
@@ -174,7 +189,7 @@ $(document).ready(function () {
 			});
 		});
 	}
-	
+
 	//function for show all items for magazine
 	function showMagazine() {
 		$(".items-table").empty();
@@ -212,8 +227,12 @@ $(document).ready(function () {
 						if (value.year >= from && value.year <= to) {
 							let str = '<div class="items">' +
 								'<div><b style="margin: 10px">' + (i++) + '</b></div>' +
-								'<div class="bookName" style="margin-left: 150px;"><b>Book Title: ' + value.title + '</b></div>' +
-								'<img src = "' + value.imageLink + '" height="120px" style="margin: -10px 20px 10px 40px">' +
+								'<div class="bookName" style="margin-left: 150px;"><b>Book Title: ' + value.title + '</b><br/><br>' +
+								'<b>Country: ' + value.country + '</b><br/><br/>' +
+								'<b>Language: ' + value.language + '</b></div>' +
+								'<img src = "' + value.imageLink + '" height="120px" style="margin: -80px 20px 10px 40px;">' +
+								'<button class="preview" style="margin-bottom: 20px;">Preview</button>' +
+								'<button class="reserve" style="margin-left: 5px;">Reserve</button>'+
 								'</div>';
 							$(".items-table").append(str);
 						}
@@ -259,7 +278,7 @@ $(document).ready(function () {
 		}
 	});
 
-	//For keywords Searching
+	//For Advice Searching
 	$("#as_btn").click(function () {
 		let category = $("#as_category").val();
 		let language = $("#as_language").val();
@@ -279,19 +298,27 @@ $(document).ready(function () {
 								value.language != "English" &&
 								value.language != "French" &&
 								value.language != "Italian" &&
-								value.pages >= pages) {
+								value.pages <= pages) {
 								let str = '<div class="items">' +
-									'<div><b style="margin: 10px">' + (i++) + '</b></div>' +
-									'<div class="bookName" style="margin-left: 150px;"><b>Book Title: ' + value.title + '</b></div>' +
-									'<img src = "' + value.imageLink + '" height="120px" style="margin: -10px 20px 10px 40px">' +
-									'</div>';
+								'<div><b style="margin: 10px">' + (i++) + '</b></div>' +
+								'<div class="bookName" style="margin-left: 150px;"><b>Book Title: ' + value.title + '</b><br/><br>' +
+								'<b>Country: ' + value.country + '</b><br/><br/>' +
+								'<b>Language: ' + value.language + '</b></div>' +
+								'<img src = "' + value.imageLink + '" height="120px" style="margin: -80px 20px 10px 40px;">' +
+								'<button class="preview" style="margin-bottom: 20px;">Preview</button>' +
+								'<button class="reserve" style="margin-left: 5px;">Reserve</button>'+
+								'</div>';
 								$(".items-table").append(str);
 							}
-						} else if (value.category == category && value.language == language && value.pages >= pages) {
+						} else if (value.category == category && value.language == language && value.pages <= pages) {
 							let str = '<div class="items">' +
 								'<div><b style="margin: 10px">' + (i++) + '</b></div>' +
-								'<div class="bookName" style="margin-left: 150px;"><b>Book Title: ' + value.title + '</b></div>' +
-								'<img src = "' + value.imageLink + '" height="120px" style="margin: -10px 20px 10px 40px">' +
+								'<div class="bookName" style="margin-left: 150px;"><b>Book Title: ' + value.title + '</b><br/><br>' +
+								'<b>Country: ' + value.country + '</b><br/><br/>' +
+								'<b>Language: ' + value.language + '</b></div>' +
+								'<img src = "' + value.imageLink + '" height="120px" style="margin: -80px 20px 10px 40px;">' +
+								'<button class="preview" style="margin-bottom: 20px;">Preview</button>' +
+								'<button class="reserve" style="margin-left: 5px;">Reserve</button>'+
 								'</div>';
 							$(".items-table").append(str);
 						}
