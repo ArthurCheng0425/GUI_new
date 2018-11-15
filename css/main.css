@@ -144,7 +144,7 @@ body {
   margin: 30px;
 }
 
-.logout_btn{
+.logout_btn {
   height: 30px;
   width: 80px;
   border-radius: 10px;
@@ -165,4 +165,58 @@ body {
   cursor: pointer;
   text-decoration: underline;
 }
+
 /*room booking end*/
+
+.preview:hover {
+  border-radius: 5px;
+  background-color: royalblue;
+  color: white;
+  cursor: pointer;
+}
+
+.reserve:hover {
+  border-radius: 5px;
+  background-color: greenyellow;
+  cursor: pointer;
+}
+
+/*POP UP BOX*/
+.popup_container {
+  margin: auto;
+  width: 50%;
+  height: 50%;
+}
+
+.popup_box {
+  position: fixed;
+  margin-top: 50px;
+  width: 800px;
+  height: 600px;
+  border: 3px solid grey;
+  border-radius: 10px;
+  background-color: white;
+  z-index: 3;
+}
+
+#popup_close {
+  margin-right: -30px;
+  background-color: red;
+  color: aliceblue;
+  font-family: sans-serif;
+  height: 25px;
+  border-radius: 10px;
+}
+
+#popup_close:hover {
+  background-color: pink;
+}
+
+#preview_text,
+#preview_content {
+  margin-left: 50px;
+}
+
+#preview_img {
+  margin-left: 50px;
+}

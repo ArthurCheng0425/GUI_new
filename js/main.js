@@ -1,4 +1,5 @@
 $(document).ready(function () {
+	$(".popup_box").hide();
 
 	$("button").mouseover(function () {
 		$(this).css("cursor", "pointer");
@@ -60,7 +61,7 @@ $(document).ready(function () {
 								'<b>Language: ' + value.language + '</b></div>' +
 								'<img src = "' + value.imageLink + '" height="120px" style="margin: -80px 20px 10px 40px;">' +
 								'<button class="preview" style="margin-bottom: 20px;">Preview</button>' +
-								'<button class="reserve" style="margin-left: 5px;">Reserve</button>'+
+								'<button class="reserve" style="margin-left: 5px;">Reserve</button>' +
 								'</div>';
 							$(".items-table").append(str);
 						}
@@ -90,7 +91,7 @@ $(document).ready(function () {
 								'<b>Language: ' + value.language + '</b></div>' +
 								'<img src = "' + value.imageLink + '" height="120px" style="margin: -80px 20px 10px 40px;">' +
 								'<button class="preview" style="margin-bottom: 20px;">Preview</button>' +
-								'<button class="reserve" style="margin-left: 5px;">Reserve</button>'+
+								'<button class="reserve" style="margin-left: 5px;">Reserve</button>' +
 								'</div>';
 							console.log(value.title + " " + keywords);
 							$(".items-table").append(str);
@@ -123,14 +124,14 @@ $(document).ready(function () {
 						$.each(result, function (index, value) {
 							if (selected_type == value.language || selected_type == value.category) {
 								let str = '<div class="items">' +
-								'<div><b style="margin: 10px">' + (i++) + '</b></div>' +
-								'<div class="bookName" style="margin-left: 150px;"><b>Book Title: ' + value.title + '</b><br/><br>' +
-								'<b>Country: ' + value.country + '</b><br/><br/>' +
-								'<b>Language: ' + value.language + '</b></div>' +
-								'<img src = "' + value.imageLink + '" height="120px" style="margin: -80px 20px 10px 40px;">' +
-								'<button class="preview" style="margin-bottom: 20px;">Preview</button>' +
-								'<button class="reserve" style="margin-left: 5px;">Reserve</button>'+
-								'</div>';
+									'<div><b style="margin: 10px">' + (i++) + '</b></div>' +
+									'<div class="bookName" style="margin-left: 150px;"><b>Book Title: ' + value.title + '</b><br/><br>' +
+									'<b>Country: ' + value.country + '</b><br/><br/>' +
+									'<b>Language: ' + value.language + '</b></div>' +
+									'<img src = "' + value.imageLink + '" height="120px" style="margin: -80px 20px 10px 40px;">' +
+									'<button class="preview" style="margin-bottom: 20px;">Preview</button>' +
+									'<button class="reserve" style="margin-left: 5px;">Reserve</button>' +
+									'</div>';
 								console.log("success");
 								$(".items-table").append(str);
 							}
@@ -148,6 +149,26 @@ $(document).ready(function () {
 		publicationDate();
 	});
 
+	//function for preview
+	function previewBook(img, title, author) {
+		$('#preview_content').empty();
+		let country = ["France", "Belgium", "United Kingdom", "United States", "India", "Roman Empire"];
+		let lang = ["French", "Greek", "English", "English", "Sanskrit", "Classical Latin"];
+		let random = Math.floor(Math.random() * 6);
+		let year = Math.floor(Math.random() * 2019);
+		let page = Math.floor(Math.random() * 1000);
+		let content = "<img src='" + img + "' id='preview_img' height='250px;'>" +
+			"<p id='preview_content'>Title: " + title + "</p>" +
+			"<p id='preview_content'>Author: " + author + "</p>" + 
+			"<p id='preview_content'>Country: " + country[random] + "</p>" + 
+			"<p id='preview_content'>Language: " + lang[random] + "</p>" + 
+			"<p id='preview_content'>Year: " + year + "</p>" +
+			"<p id='preview_content'>Page: " + page + "</p>";
+		$('#preview_content').append(content);
+		$('.popup_box').fadeIn();
+		$('.items-table').css('opacity', '0.1');
+	}
+	
 	//function for show all items
 	function showBook() {
 		$(".items-table").empty();
@@ -157,20 +178,30 @@ $(document).ready(function () {
 				$(".items-table").append("<div class='items' style='height: 35px;'><h2 style='margin-left:20px;'>All \\ Book<h2></div>");
 				$.each(result, function (index, value) {
 					let str = '<div class="items">' +
-								'<div><b style="margin: 10px">' + (index+1) + '</b></div>' +
-								'<div class="bookName" style="margin-left: 150px;"><b>Book Title: ' + value.title + '</b><br/><br>' +
-								'<b>Country: ' + value.country + '</b><br/><br/>' +
-								'<b>Language: ' + value.language + '</b></div>' +
-								'<img src = "' + value.imageLink + '" height="120px" style="margin: -80px 20px 10px 40px;">' +
-								'<button class="preview" style="margin-bottom: 20px;">Preview</button>' +
-								'<button class="reserve" style="margin-left: 5px;">Reserve</button>'+
-								'</div>';
+						'<div><b style="margin: 10px">' + (index + 1) + '</b></div>' +
+						'<div class="bookName" style="margin-left: 150px;"><b>Book Title: ' + value.title + '</b><br/><br>' +
+						'<b>Country: ' + value.country + '</b><br/><br/>' +
+						'<b>Language: ' + value.language + '</b></div>' +
+						'<img src = "' + value.imageLink + '" height="120px" style="margin: -80px 20px 10px 40px;">' +
+						'<button class="preview" form="' +
+						value.imageLink + '" name="' +
+						value.title + '" value="' +
+						value.author + '" style="margin-bottom: 20px;">Preview</button>' +
+						'<button class="reserve" style="margin-left: 5px;">Reserve</button>' +
+						'</div>';
 					$(".items-table").append(str);
+				});
+				$('.preview').click(function () {
+					previewBook($(this).attr('form'), $(this).attr('name'), $(this).attr('value'));
+				});
+				$('#popup_close').click(function(){
+					$('.popup_box').fadeOut();
+					$('.items-table').css('opacity', '1');
 				});
 			});
 		});
 	}
-
+	
 	//function for show all items for software
 	function showSoftware() {
 		$(".items-table").empty();
@@ -232,7 +263,7 @@ $(document).ready(function () {
 								'<b>Language: ' + value.language + '</b></div>' +
 								'<img src = "' + value.imageLink + '" height="120px" style="margin: -80px 20px 10px 40px;">' +
 								'<button class="preview" style="margin-bottom: 20px;">Preview</button>' +
-								'<button class="reserve" style="margin-left: 5px;">Reserve</button>'+
+								'<button class="reserve" style="margin-left: 5px;">Reserve</button>' +
 								'</div>';
 							$(".items-table").append(str);
 						}
@@ -300,14 +331,14 @@ $(document).ready(function () {
 								value.language != "Italian" &&
 								value.pages <= pages) {
 								let str = '<div class="items">' +
-								'<div><b style="margin: 10px">' + (i++) + '</b></div>' +
-								'<div class="bookName" style="margin-left: 150px;"><b>Book Title: ' + value.title + '</b><br/><br>' +
-								'<b>Country: ' + value.country + '</b><br/><br/>' +
-								'<b>Language: ' + value.language + '</b></div>' +
-								'<img src = "' + value.imageLink + '" height="120px" style="margin: -80px 20px 10px 40px;">' +
-								'<button class="preview" style="margin-bottom: 20px;">Preview</button>' +
-								'<button class="reserve" style="margin-left: 5px;">Reserve</button>'+
-								'</div>';
+									'<div><b style="margin: 10px">' + (i++) + '</b></div>' +
+									'<div class="bookName" style="margin-left: 150px;"><b>Book Title: ' + value.title + '</b><br/><br>' +
+									'<b>Country: ' + value.country + '</b><br/><br/>' +
+									'<b>Language: ' + value.language + '</b></div>' +
+									'<img src = "' + value.imageLink + '" height="120px" style="margin: -80px 20px 10px 40px;">' +
+									'<button class="preview" style="margin-bottom: 20px;">Preview</button>' +
+									'<button class="reserve" style="margin-left: 5px;">Reserve</button>' +
+									'</div>';
 								$(".items-table").append(str);
 							}
 						} else if (value.category == category && value.language == language && value.pages <= pages) {
@@ -318,7 +349,7 @@ $(document).ready(function () {
 								'<b>Language: ' + value.language + '</b></div>' +
 								'<img src = "' + value.imageLink + '" height="120px" style="margin: -80px 20px 10px 40px;">' +
 								'<button class="preview" style="margin-bottom: 20px;">Preview</button>' +
-								'<button class="reserve" style="margin-left: 5px;">Reserve</button>'+
+								'<button class="reserve" style="margin-left: 5px;">Reserve</button>' +
 								'</div>';
 							$(".items-table").append(str);
 						}
