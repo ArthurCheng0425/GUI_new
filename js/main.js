@@ -138,42 +138,6 @@ $(document).ready(function () {
 		publicationDate();
 	});
 
-	//function for preview
-	function previewBook(img, title, author) {
-		$('#preview_content').empty();
-		let country = ["France", "Belgium", "United Kingdom", "United States", "India", "Roman Empire"];
-		let lang = ["French", "Greek", "English", "English", "Sanskrit", "Classical Latin"];
-		let random = Math.floor(Math.random() * 6);
-		let year = Math.floor(Math.random() * 2019);
-		let page = Math.floor(Math.random() * 1000);
-		let content = "<img src='" + img + "' id='preview_img' height='250px;'>" +
-			"<p id='preview_content'>Title: " + title + "</p>" +
-			"<p id='preview_content'>Author: " + author + "</p>" +
-			"<p id='preview_content'>Country: " + country[random] + "</p>" +
-			"<p id='preview_content'>Language: " + lang[random] + "</p>" +
-			"<p id='preview_content'>Year: " + year + "</p>" +
-			"<p id='preview_content'>Page: " + page + "</p>";
-		$('#preview_content').append(content);
-		$('.popup_box').fadeIn();
-		$('.items-table').css('opacity', '0.1');
-	}
-
-	function createItems(index, title, country, language, imageLink, author) {
-		let str = '<div class="items">' +
-			'<div><b style="margin: 10px">' + index + '</b></div>' +
-			'<div class="bookName" style="margin-left: 150px;"><b>Book Title: ' + title + '</b><br/><br>' +
-			'<b>Country: ' + country + '</b><br/><br/>' +
-			'<b>Language: ' + language + '</b></div>' +
-			'<img src = "' + imageLink + '" height="120px" style="margin: -80px 20px 10px 40px;">' +
-			'<button class="preview" form="' +
-			imageLink + '" name="' +
-			title + '" value="' +
-			author + '" style="margin-bottom: 20px;">Preview</button>' +
-			'<button class="reserve" style="margin-left: 5px;">Reserve</button>' +
-			'</div>';
-		$(".items-table").append(str);
-	}
-
 	//function for show all items
 	function showBook() {
 		$(".items-table").empty();
@@ -415,4 +379,67 @@ $(document).ready(function () {
 				})
 			}, 2000);
 	});
+
+	//function for preview
+	function previewBook(img, title, author) {
+		$('#preview_content').empty();
+		let country = ["France", "Belgium", "United Kingdom", "United States", "India", "Roman Empire"];
+		let lang = ["French", "Greek", "English", "English", "Sanskrit", "Classical Latin"];
+		let random = Math.floor(Math.random() * 6);
+		let year = Math.floor(Math.random() * 2019);
+		let page = Math.floor(Math.random() * 1000);
+		let content = "<img src='" + img + "' id='preview_img' height='250px;'>" +
+			"<p id='preview_content'>Title: " + title + "</p>" +
+			"<p id='preview_content'>Author: " + author + "</p>" +
+			"<p id='preview_content'>Country: " + country[random] + "</p>" +
+			"<p id='preview_content'>Language: " + lang[random] + "</p>" +
+			"<p id='preview_content'>Year: " + year + "</p>" +
+			"<p id='preview_content'>Page: " + page + "</p>" +
+			"<img src='images/arrowRight.png' id='arrowRight'>" +
+			"<div class='messagebox'>click to view chapter</div>";
+		$('#preview_content').append(content);
+		$('.messagebox').hide();
+		$('.popup_box').fadeIn();
+		$('.items-table').css('opacity', '0.1');
+		$('#arrowRight').hover(function () {
+			$('.messagebox').fadeIn();
+		}, function () {
+			$('.messagebox').fadeOut();
+		});
+		$('#arrowRight').click(function () {
+			viewChapter(book_content);
+		});
+	}
+
+	//function for creating items
+	function createItems(index, title, country, language, imageLink, author) {
+		let str = '<div class="items">' +
+			'<div><b style="margin: 10px">' + index + '</b></div>' +
+			'<div class="bookName" style="margin-left: 150px;"><b>Book Title: ' + title + '</b><br/><br>' +
+			'<b>Country: ' + country + '</b><br/><br/>' +
+			'<b>Language: ' + language + '</b></div>' +
+			'<img src = "' + imageLink + '" height="120px" style="margin: -80px 20px 10px 40px;">' +
+			'<button class="preview" form="' +
+			imageLink + '" name="' +
+			title + '" value="' +
+			author + '" style="margin-bottom: 20px;">Preview</button>' +
+			'<button class="reserve" style="margin-left: 5px;">Reserve</button>' +
+			'</div>';
+		$(".items-table").append(str);
+	}
+
+	//for view chapter
+	function viewChapter(content) {
+		$('#preview_content').fadeOut(function () {
+			$('#preview_content').empty();
+		});
+		$('#preview_content').fadeIn(function () {
+			$('#preview_content').append(content);
+		});
+	}
+
+	var book_content = '<div class="book_bg">'+
+		'<div class="pageB"><h2>Chapter 1</h2><p>Mr. and Mrs. Dursley, of number four, Privet Drive, were proud to say that they were perfectly normal, thank you 	very much. They were the last people you\'d expect to be involved in anything strange or mysterious, because they just didn\'t hold with such nonsense. </p><p>Mr. Dursley was the director of a firm called Grunnings, which made drills. He was a big, beefy man with hardly any neck, although he did have a very large mustache. Mrs. Dursley was thin and blonde and had nearly twice the usual amount of neck, which came in very useful as she spent so much of her time craning over garden fences, spying on the neighbors. The Dursleys had a small son called Dudley and in their opinion there was no finer boy anywhere. </p></div>'+
+		'<div class="pageN"><p>The Dursleys had everything they wanted, but they also had a secret, and their greatest fear was that somebody would discover it. They didn\'t think they could bear it if anyone found out about the Potters. Mrs. Potter was Mrs. Dursley\'s sister, but they hadn\'t met for several years; in fact, Mrs. Dursley pretended she didn\'t have a sister, because her sister and her good-for-nothing husband were as unDursleyish as it was possible to be. The Dursleys shuddered to think what the neighbors would say if the Potters arrived in the street. The Dursleys knew that the Potters had a small son, too, but they had never even seen him. This boy was another good reason for keeping the Potters away; they didn\'t want Dudley mixing with a child like that.</p></div>'+
+		'</div>';
 });

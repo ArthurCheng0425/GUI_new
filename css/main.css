@@ -220,3 +220,56 @@ body {
 #preview_img {
   margin-left: 50px;
 }
+
+/*For PREVIEW ANIM*/
+#arrowRight {
+  width: 300px;
+  height: 400px;
+  margin-top: -100%;
+  margin-left: 350px;
+  transition: 1s ease-in-out;
+}
+
+#arrowRight:hover {
+  transform: translate(50px);
+  cursor: pointer;
+}
+
+.messagebox {
+  text-align: center;
+  width: 100px;
+  background-color: #000;
+  opacity: 0.8;
+  color: white;
+  border-radius: 10px;
+  margin-left: 450px;
+  margin-top: -450px;
+  padding: 5px;
+}
+
+.book_bg {
+  width: 700px;
+  height: 450px;
+  background-color: brown;
+  border-radius: 15px;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.pageB {
+  width: 305px;
+  height: 425px;
+  background-color: #fff;
+  margin-left: 25px;
+  padding: 10px;
+}
+
+.pageN {
+  width: 305px;
+  height: 425px;
+  background-color: #fff;
+  margin-left: 351px;
+  margin-top: -445px;
+  box-shadow: -5px 0px 20px grey;
+  padding: 10px;
+}
