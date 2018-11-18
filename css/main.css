@@ -192,7 +192,7 @@ body {
   position: fixed;
   margin-top: 50px;
   width: 800px;
-  height: 600px;
+  height: 620px;
   border: 3px solid grey;
   border-radius: 10px;
   background-color: white;
@@ -272,4 +272,22 @@ body {
   margin-top: -445px;
   box-shadow: -5px 0px 20px grey;
   padding: 10px;
+}
+
+#backTobookDetails {
+  margin: 5px;
+  background-color: royalblue;
+  color: white;
+  border-radius: 5px;
+}
+
+#backTobookDetails:hover {
+  background-color: mediumblue;
+  cursor: pointer;
+}
+
+#nextPage:hover, #frontPage:hover{
+  cursor: pointer;
+  color: navajowhite;
+  text-shadow: 1px 1px #000;
 }

@@ -407,7 +407,7 @@ $(document).ready(function () {
 			$('.messagebox').fadeOut();
 		});
 		$('#arrowRight').click(function () {
-			viewChapter(book_content);
+			viewChapter(book_content, img, title, author);
 		});
 	}
 
@@ -429,17 +429,70 @@ $(document).ready(function () {
 	}
 
 	//for view chapter
-	function viewChapter(content) {
+	function viewChapter(content, img, title, author) {
 		$('#preview_content').fadeOut(function () {
 			$('#preview_content').empty();
 		});
 		$('#preview_content').fadeIn(function () {
 			$('#preview_content').append(content);
+			$('#preview_content').append("<button id='backTobookDetails'>< Back</button>");
+			$('#nextPage').click(function () {
+				$('#preview_content').empty();
+				$('#preview_content').append(book_next_content);
+				$('#preview_content').fadeIn();
+				$('#preview_content').append("<button id='backTobookDetails'>< Back</button>");
+				$('#frontPage').click(function () {
+					$('#preview_content').empty();
+					$('#preview_content').append(content);
+					$('#preview_content').fadeIn();
+					$('#preview_content').append("<button id='backTobookDetails'>< Back</button>");
+					viewPage(img, title, author);
+					$('#backTobookDetails').click(function () {
+						previewBook(img, title, author);
+					});
+				});
+				$('#backTobookDetails').click(function () {
+					previewBook(img, title, author);
+				});
+			});
+			$('#backTobookDetails').click(function () {
+				previewBook(img, title, author);
+			});
 		});
 	}
 
-	var book_content = '<div class="book_bg">'+
-		'<div class="pageB"><h2>Chapter 1</h2><p>Mr. and Mrs. Dursley, of number four, Privet Drive, were proud to say that they were perfectly normal, thank you 	very much. They were the last people you\'d expect to be involved in anything strange or mysterious, because they just didn\'t hold with such nonsense. </p><p>Mr. Dursley was the director of a firm called Grunnings, which made drills. He was a big, beefy man with hardly any neck, although he did have a very large mustache. Mrs. Dursley was thin and blonde and had nearly twice the usual amount of neck, which came in very useful as she spent so much of her time craning over garden fences, spying on the neighbors. The Dursleys had a small son called Dudley and in their opinion there was no finer boy anywhere. </p></div>'+
-		'<div class="pageN"><p>The Dursleys had everything they wanted, but they also had a secret, and their greatest fear was that somebody would discover it. They didn\'t think they could bear it if anyone found out about the Potters. Mrs. Potter was Mrs. Dursley\'s sister, but they hadn\'t met for several years; in fact, Mrs. Dursley pretended she didn\'t have a sister, because her sister and her good-for-nothing husband were as unDursleyish as it was possible to be. The Dursleys shuddered to think what the neighbors would say if the Potters arrived in the street. The Dursleys knew that the Potters had a small son, too, but they had never even seen him. This boy was another good reason for keeping the Potters away; they didn\'t want Dudley mixing with a child like that.</p></div>'+
+	function viewPage(img, title, author) {
+		$('#nextPage').click(function () {
+			$('#preview_content').empty();
+			$('#preview_content').append(book_next_content);
+			$('#preview_content').fadeIn();
+			$('#preview_content').append("<button id='backTobookDetails'>< Back</button>");
+			$('#frontPage').click(function () {
+				$('#preview_content').empty();
+				$('#preview_content').append(book_content);
+				$('#preview_content').fadeIn();
+				$('#preview_content').append("<button id='backTobookDetails'>< Back</button>");
+				viewPage();
+				$('#backTobookDetails').click(function () {
+					previewBook(img, title, author);
+				});
+			});
+			$('#backTobookDetails').click(function () {
+				previewBook(img, title, author);
+			});
+		});
+		$('#backTobookDetails').click(function () {
+			previewBook(img, title, author);
+		});
+	}
+
+	var book_content = '<div class="book_bg">' +
+		'<div class="pageB"><h2>Chapter 1</h2><p>Mr. and Mrs. Dursley, of number four, Privet Drive, were proud to say that they were perfectly normal, thank you 	very much. They were the last people you\'d expect to be involved in anything strange or mysterious, because they just didn\'t hold with such nonsense. </p><p>Mr. Dursley was the director of a firm called Grunnings, which made drills. He was a big, beefy man with hardly any neck, although he did have a very large mustache. Mrs. Dursley was thin and blonde and had nearly twice the usual amount of neck, which came in very useful as she spent so much of her time craning over garden fences, spying on the neighbors. The Dursleys had a small son called Dudley and in their opinion there was no finer boy anywhere. </p></div>' +
+		'<div class="pageN"><p>The Dursleys had everything they wanted, but they also had a secret, and their greatest fear was that somebody would discover it. They didn\'t think they could bear it if anyone found out about the Potters. Mrs. Potter was Mrs. Dursley\'s sister, but they hadn\'t met for several years; in fact, Mrs. Dursley pretended she didn\'t have a sister, because her sister and her good-for-nothing husband were as unDursleyish as it was possible to be. </p><p>The Dursleys shuddered to think what the neighbors would say if the Potters arrived in the street. The Dursleys knew that the Potters had a small son, too, but they had never even seen him. This boy was another good reason for keeping the Potters away; they didn\'t want Dudley mixing with a child like that.</p><br/><br/><br/><a style="margin-left: 170px;" id="nextPage">click to next page<a></div>' +
+		'</div>';
+
+	var book_next_content = '<div class="book_bg">' +
+		'<div class="pageB"><p>When Mr. and Mrs. Dursley woke up on the dull, gray Tuesday our story starts, there was nothing about the cloudy sky outside to suggest that strange and mysterious things would soon be happening all over the country. Mr. Dursley hummed as he picked out his most boring tie for work, and Mrs. Dursley gossiped away happily as she wrestled a screaming Dudley into his high chair.</p><p>None of them noticed a large, tawny owl flutter past the window. At half past eight, Mr. Dursley picked up his briefcase, pecked Mrs. Dursley on the cheek, and tried to kiss Dudley good-bye but missed, because Dudley was now having a tantrum and throwing his cereal at the walls. "Little tyke," chortled Mr. Dursley as he left the house. He got into his car and backed out of number four\'s drive. </p><br/><br/><a id="frontPage">click to front page</a></div>' +
+		'<div class="pageN"><p>It was on the corner of the street that he noticed the first sign of something peculiar — a cat reading a map. For a second, Mr. Dursley didn\'t realize what he had seen — then he jerked his head around to look again. There was a tabby cat standing on the corner of Privet Drive, but there wasn\'t a map in sight. What could he have been thinking of? It must have been a trick of the light. Mr. Dursley blinked and stared at the cat. It stared back. As Mr. Dursley drove around the corner and up the road, he watched the cat in his mirror.</p><p> It was now reading the sign that said Privet Drive — no, looking at the sign; cats couldn\'t read maps or signs. Mr. Dursley gave himself a little shake and put the cat out of his mind. As he drove toward town he thought of nothing except a large order of drills he was hoping to get that day.</p><a>---End---</a></div>' +
 		'</div>';
 });
