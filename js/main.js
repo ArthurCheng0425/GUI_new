@@ -472,7 +472,7 @@ $(document).ready(function () {
 				$('#preview_content').append(book_content);
 				$('#preview_content').fadeIn();
 				$('#preview_content').append("<button id='backTobookDetails'>< Back</button>");
-				viewPage();
+				viewPage(img, title, author);
 				$('#backTobookDetails').click(function () {
 					previewBook(img, title, author);
 				});
