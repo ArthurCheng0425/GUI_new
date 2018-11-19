@@ -156,9 +156,9 @@ $(document).ready(function () {
     });
   
     function showNotice(){
-        alert(++numOfNotice + " You have reversed the book, \nPlease check your notice.");
+        alert("You have reversed the book, \nPlease check your notice.");
         $('.badge').show();
-        $('.badge').html(numOfNotice);
+        $('.badge').html(++numOfNotice);
     }
 
 	//function for show all items
@@ -169,7 +169,8 @@ $(document).ready(function () {
 			$.getJSON("books.json", function (result) {
 				$(".items-table").append("<div class='items' style='height: 35px;'><h2 style='margin-left:20px;'>All \\ Book<h2></div>");
 				$.each(result, function (index, value) {
-					createItems((index + 1), value.title, value.country, value.language, value.imageLink, value.author);
+					//createItems((index + 1), value.title, value.country, value.language, value.imageLink, value.author);
+                    createItemsAsPhoto((index + 1), value.title, value.country, value.language, value.imageLink, value.author);
 				});
                 $('.reserve').click(function(){
                     showNotice();
@@ -465,7 +466,7 @@ $(document).ready(function () {
 	function createItems(index, title, country, language, imageLink, author) {
 		let str = '<div class="items">' +
 			'<div><b style="margin: 10px">' + index + '</b></div>' +
-			'<div class="bookName" style="margin-left: 150px;"><b>Book Title: ' + title + '</b><br/><br>' +
+			'<div class="bookName" style="margin-left: 150px; width: 400px;"><b>Book Title: ' + title + '</b><br/><br>' +
 			'<b>Country: ' + country + '</b><br/><br/>' +
 			'<b>Language: ' + language + '</b></div>' +
 			'<img src = "' + imageLink + '" height="120px" style="margin: -80px 20px 10px 40px;">' +
@@ -477,6 +478,38 @@ $(document).ready(function () {
 			'</div>';
 		$(".items-table").append(str);
 	}
+  
+    var c = 0;
+    function createItemsAsPhoto(index, title, country, language, imageLink, author){
+      let str = '<div class="items">' +
+			'<b style="margin: 10px">' + index + '</b>' +
+			'<div class="bookName" style="margin-left: 150px; width: 600px;"><b>Book Title: ' + title + '</b><br/><br>' +
+			'<b>Country: ' + country + '</b><br/><br/>' +
+			'<b>Language: ' + language + '</b></div>' +
+			'<img src = "' + imageLink + '" height="120px" style="margin: -80px 20px 10px 40px;">' +
+			'<button class="preview" form="' +
+			imageLink + '" name="' +
+			title + '" value="' +
+			author + '" style="margin-bottom: 20px;">Preview</button>' +
+			'<button class="reserve" style="margin-left: 5px;">Reserve</button>' +
+			'</div>';
+      let str2 = '<div class="items" style="margin-left: 600px; margin-top: -184px;">' +
+			'<b style="margin: 10px">' + index + '</b>' +
+			'<div class="bookName" style="margin-left: 150px; width: 600px;"><b>Book Title: ' + title + '</b><br/><br>' +
+			'<b>Country: ' + country + '</b><br/><br/>' +
+			'<b>Language: ' + language + '</b></div>' +
+			'<img src = "' + imageLink + '" height="120px" style="margin: -80px 20px 10px 40px;">' +
+			'<button class="preview" form="' +
+			imageLink + '" name="' +
+			title + '" value="' +
+			author + '" style="margin-bottom: 20px;">Preview</button>' +
+			'<button class="reserve" style="margin-left: 5px;">Reserve</button>' +
+			'</div>';
+      if(c++ % 2 == 0)
+		$(".items-table").append(str);
+      else
+        $(".items-table").append(str2);
+    }
 
 	//for view chapter
 	function viewChapter(img, title, author) {
