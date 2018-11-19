@@ -375,3 +375,12 @@ body {
   text-decoration: underline;
   text-shadow: 1px 1px grey;
 }
+
+.badge {
+  position: fixed;
+  padding: 1px 6px;
+  margin-top: -5px;
+  border-radius: 50%;
+  background: red;
+  color: white;
+}

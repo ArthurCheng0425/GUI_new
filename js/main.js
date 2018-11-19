@@ -56,6 +56,9 @@ $(document).ready(function () {
 							createItems(i++, value.title, value.country, value.language, value.imageLink, value.author);
 						}
 					});
+                    $('.reserve').click(function(){
+                        showNotice();
+                    });
 					$('.preview').click(function () {
 						previewBook($(this).attr('form'), $(this).attr('name'), $(this).attr('value'));
 					});
@@ -83,6 +86,9 @@ $(document).ready(function () {
 							createItems(i++, value.title, value.country, value.language, value.imageLink, value.author);
 						}
 					});
+                    $('.reserve').click(function(){
+                        showNotice();
+                    });
 					$('.preview').click(function () {
 						previewBook($(this).attr('form'), $(this).attr('name'), $(this).attr('value'));
 					});
@@ -125,6 +131,9 @@ $(document).ready(function () {
 								});
 							}
 						});
+                        $('.reserve').click(function(){
+                            showNotice();
+                        });
 					});
 				}, 2000);
 		}
@@ -137,6 +146,20 @@ $(document).ready(function () {
 	$("#to").on("change", function () {
 		publicationDate();
 	});
+  
+    //FOR NOTICE
+        var numOfNotice = 0;
+    $('.badge').hide();
+    $('#notice').click(function(){
+        numOfNotice = 0;
+        $('.badge').hide();
+    });
+  
+    function showNotice(){
+        alert(++numOfNotice + " You have reversed the book, \nPlease check your notice.");
+        $('.badge').show();
+        $('.badge').html(numOfNotice);
+    }
 
 	//function for show all items
 	function showBook() {
@@ -148,6 +171,9 @@ $(document).ready(function () {
 				$.each(result, function (index, value) {
 					createItems((index + 1), value.title, value.country, value.language, value.imageLink, value.author);
 				});
+                $('.reserve').click(function(){
+                    showNotice();
+                });
 				$('.preview').click(function () {
 					previewBook($(this).attr('form'), $(this).attr('name'), $(this).attr('value'));
 				});
@@ -216,6 +242,9 @@ $(document).ready(function () {
 							createItems(i++, value.title, value.country, value.language, value.imageLink, value.author);
 						}
 					});
+                    $('.reserve').click(function(){
+                        showNotice();
+                    });
 					$('.preview').click(function () {
 						previewBook($(this).attr('form'), $(this).attr('name'), $(this).attr('value'));
 					});
@@ -288,15 +317,20 @@ $(document).ready(function () {
 								createItems(i++, value.title, value.country, value.language, value.imageLink, value.author);
 							}
 						} else if (language == "all" || category == "all") {
-							if (language == "all" && category == value.category && pages <= value.pages) {
+							if (language == "all" && category == value.category && pages >= value.pages) {
 								createItems(i++, value.title, value.country, value.language, value.imageLink, value.author);
-							} else if (language == value.language && category == "all" && pages <= value.pages) {
+							} else if (language == value.language && category == "all" && pages >= value.pages) {
 								createItems(i++, value.title, value.country, value.language, value.imageLink, value.author);
-							}
+							} else if (language == "all" && category == "all" && pages >= value.pages) {
+                                createItems(i++, value.title, value.country, value.language, value.imageLink, value.author);
+                            }
 						} else if (value.category == category && value.language == language && value.pages <= pages) {
 							createItems(i++, value.title, value.country, value.language, value.imageLink, value.author);
 						}
 					});
+                    $('.reserve').click(function(){
+                        showNotice();
+                    });
 					$('.preview').click(function () {
 						previewBook($(this).attr('form'), $(this).attr('name'), $(this).attr('value'));
 					});

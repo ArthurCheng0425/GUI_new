@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<title>Library System</title>
+  <meta charset="UTF-8">
+  <title>Library System</title>
 </head>
 <script src="jslib/jquery-1.11.1.js"></script>
 <script src="jslib/jquery-1.6.2.js"></script>
@@ -15,7 +15,6 @@
 <link rel="stylesheet" href="css/loading.css">
 <link rel="stylesheet" href="css/backToTop.css">
 <link rel="stylesheet" href="css/loadPageAnimation.css">
-
 <link rel="stylesheet" href="css/booking_room.css">
 <script src="js/booking_room.js"></script>
 
@@ -23,196 +22,198 @@
 
 <body>
 
-	<!--show page animation-->
-	<div class="animation_container">
-		<div class="fade-in-container">
-			<div class="circle"></div>
-		</div>
-		<div class="vtc_logo_container">
-			<img src="book.gif" style="height: 200px;">
-		</div>
-		<div class="progress_bar_container">
-			<div class="progress_bar">
-				<div class="progress"></div>
-			</div>
-		</div>
-		<div class="progress_message_container">
-			<div class="progress_message">0%</div>
-		</div>
-	</div>
-	<!--end-->
+  <!--show page animation-->
+  <div class="animation_container">
+    <div class="fade-in-container">
+      <div class="circle"></div>
+    </div>
+    <div class="vtc_logo_container">
+      <img src="book.gif" style="height: 200px;">
+    </div>
+    <div class="progress_bar_container">
+      <div class="progress_bar">
+        <div class="progress"></div>
+      </div>
+    </div>
+    <div class="progress_message_container">
+      <div class="progress_message">0%</div>
+    </div>
+  </div>
+  <!--end-->
 
-	<div class="full-container">
-		<div class="header">
-			<!--background-color: #103362;   BLUE-->
-			<div style="height: 30px; width: 100%; background-color: #103362;">
-			</div>
-			<table width="100%;">
-				<tr>
-					<td>
-						<h2 class="heading" id="logo">The One Library</h2>
-					</td>
-					<td>
-						<input type="text" id="search_bar" placeholder="Search...">
-						<button id="go" type="submit" s>GO</button>
-					</td>
-					<td>
-						<button id="advance_search">Advanced Search <img src="images/add.png" width="15px;" style="padding-top: 2px"></button>
-					</td>
-					<td id="notice" style="width: 100px;"><b class="headText">Notice</b></td>
-					<td id="myAccount" style="width: 100px;"><b class="headText">My Account</b></td>
-				</tr>
-			</table>
-		</div>
-		<div class="advance_search_bar">
-			<h3 style="margin-left: 20px;">advance_search</h3>
-			<a class="advance_search_label">Category: </a>
-			<select name="category" id="as_category" class="advance_search_input">
-				<option value="all">All</option>
-				<option value="Fiction">Fiction</option>
-				<option value="Prose">Prose</option>
-				<option value="Dissertation">Dissertation</option>
-				<option value="Political">Political</option>
-				<option value="Literature">Literature</option>
-			</select>
-			<a class="advance_search_label">Language: </a>
-			<select name="language" id="as_language" class="advance_search_input">
-				<option value="all">All</option>
-				<option value="English">English</option>
-				<option value="French">French</option>
-				<option value="Italian">Italian</option>
-				<option value="others">Others</option>
-			</select>
-			<a class="advance_search_label">Pages (with in): </a>
-			<select name="page" id="as_page" class="advance_search_input">
-				<option value="300">300</option>
-				<option value="500">500</option>
-				<option value="700">700</option>
-				<option value="9999">above 700</option>
-			</select>
-			<button id="as_btn">Search</button>
-		</div>
-		<div class="side-navigation-contain">
-			<table width="200px" style="margin-top: 40px;">
-				<tr>
-					<td class="heading" style="font-size: 15px;">TYPE</td>
-				</tr>
-				<tr>
-					<td class="sn-filter" id="view_book">Book</td>
-				</tr>
-				<tr>
-					<td class="sn-filter" id="view_software">Software</td>
-				</tr>
-				<tr>
-					<td class="sn-filter" id="view_magazine">Magazine</td>
-				</tr>
-			</table>
+  <div class="full-container">
+    <div class="header">
+      <!--background-color: #103362;   BLUE-->
+      <div style="height: 30px; width: 100%; background-color: #103362;">
+      </div>
+      <table width="100%;">
+        <tr>
+          <td>
+            <h2 class="heading" id="logo">The One Library</h2>
+          </td>
+          <td>
+            <input type="text" id="search_bar" placeholder="Search...">
+            <button id="go" type="submit" s>GO</button>
+          </td>
+          <td>
+            <button id="advance_search">Advanced Search <img src="images/add.png" width="15px;" style="padding-top: 2px"></button>
+          </td>
+          <td id="notice" style="width: 100px;"><b class="headText">Notice</b><span class="badge">0</span></td>
+          <td id="myAccount" style="width: 100px;"><b class="headText">My Account</b></td>
+        </tr>
+      </table>
+    </div>
+    <div class="advance_search_bar">
+      <h3 style="margin-left: 20px;">advance_search</h3>
+      <a class="advance_search_label">Category: </a>
+      <select name="category" id="as_category" class="advance_search_input">
+        <option value="all">All</option>
+        <option value="Fiction">Fiction</option>
+        <option value="Prose">Prose</option>
+        <option value="Dissertation">Dissertation</option>
+        <option value="Political">Political</option>
+        <option value="Literature">Literature</option>
+      </select>
+      <a class="advance_search_label">Language: </a>
+      <select name="language" id="as_language" class="advance_search_input">
+        <option value="all">All</option>
+        <option value="English">English</option>
+        <option value="French">French</option>
+        <option value="Italian">Italian</option>
+        <option value="others">Others</option>
+      </select>
+      <a class="advance_search_label">Pages (with in): </a>
+      <select name="page" id="as_page" class="advance_search_input">
+        <option value="300">300</option>
+        <option value="500">500</option>
+        <option value="700">700</option>
+        <option value="9999">above 700</option>
+      </select>
+      <button id="as_btn">Search</button>
+    </div>
+    <div class="side-navigation-contain">
+      <table width="200px" style="margin-top: 40px;">
+        <tr>
+          <td class="heading" style="font-size: 15px;">TYPE</td>
+        </tr>
+        <tr>
+          <td class="sn-filter" id="view_book">Book</td>
+        </tr>
+        <tr>
+          <td class="sn-filter" id="view_software">Software</td>
+        </tr>
+        <tr>
+          <td class="sn-filter" id="view_magazine">Magazine</td>
+        </tr>
+      </table>
 
-			<table width="200px" style="margin-top: 40px;">
-				<tr>
-					<td class="heading" style="font-size: 15px;">CATEGORY</td>
-				</tr>
-				<tr>
-					<td class="sn-filter" headers="Category" id="Fiction">Fiction</td>
-				</tr>
-				<tr>
-					<td class="sn-filter" headers="Category" id="Prose">Prose</td>
-				</tr>
-				<tr>
-					<td class="sn-filter" headers="Category" id="Dissertation">Dissertation</td>
-				</tr>
-				<tr>
-					<td class="sn-filter" headers="Category" id="Political">Political</td>
-				</tr>
-				<tr>
-					<td class="sn-filter" headers="Category" id="Literature">Literature</td>
-				</tr>
-			</table>
+      <table width="200px" style="margin-top: 40px;">
+        <tr>
+          <td class="heading" style="font-size: 15px;">CATEGORY</td>
+        </tr>
+        <tr>
+          <td class="sn-filter" headers="Category" id="Fiction">Fiction</td>
+        </tr>
+        <tr>
+          <td class="sn-filter" headers="Category" id="Prose">Prose</td>
+        </tr>
+        <tr>
+          <td class="sn-filter" headers="Category" id="Dissertation">Dissertation</td>
+        </tr>
+        <tr>
+          <td class="sn-filter" headers="Category" id="Political">Political</td>
+        </tr>
+        <tr>
+          <td class="sn-filter" headers="Category" id="Literature">Literature</td>
+        </tr>
+      </table>
 
-			<table width="200px" style="margin-top: 40px;">
-				<tr>
-					<td class="heading" style="font-size: 15px;">LANGUAGE</td>
-				</tr>
-				<tr>
-					<td class="sn-filter" headers="Language" id="English">English</td>
-				</tr>
-				<tr>
-					<td class="sn-filter" headers="Language" id="French">French</td>
-				</tr>
-				<tr>
-					<td class="sn-filter" headers="Language" id="Italian">Italian</td>
-				</tr>
-			</table>
-			<div class="time-selector">
-				<b class="heading" style="font-size: 12px; margin-left: 0px;">PUBLICATION DATE</b>
-				<br /> from
-				<input type="number" id="from" style="width: 45px;" value="1"> to
-				<input type="number" id="to" style="width: 45px;" value="2018" max="2018"> (Year)
-				<br />
-			</div>
-			<div class="permission_function">
-				<a id="room_booking">Room Booking</a>
-			</div>
-		</div>
+      <table width="200px" style="margin-top: 40px;">
+        <tr>
+          <td class="heading" style="font-size: 15px;">LANGUAGE</td>
+        </tr>
+        <tr>
+          <td class="sn-filter" headers="Language" id="English">English</td>
+        </tr>
+        <tr>
+          <td class="sn-filter" headers="Language" id="French">French</td>
+        </tr>
+        <tr>
+          <td class="sn-filter" headers="Language" id="Italian">Italian</td>
+        </tr>
+      </table>
+      <div class="time-selector">
+        <b class="heading" style="font-size: 12px; margin-left: 0px;">PUBLICATION DATE</b>
+        <br /> from
+        <input type="number" id="from" style="width: 45px;" value="1"> to
+        <input type="number" id="to" style="width: 45px;" value="2018" max="2018"> (Year)
+        <br />
+      </div>
+      <div class="permission_function">
+        <a id="room_booking">Room Booking</a>
+      </div>
+    </div>
 
-		<div class="loading-animation">
-			<div class="lds-spinner">
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-				<div></div>
-			</div>
-		</div>
-		
-		<div class="popup_container">
-			<div class="popup_box">
-				<table width="100%">
-					<tr>
-						<td><h1 id="preview_text">Preview</h1></td>
-						<td><button id="popup_close">close X</button></td>
-					</tr>
-				</table>
-				<div id="preview_content"></div>
-			</div>
-		</div>
+    <div class="loading-animation">
+      <div class="lds-spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
 
-		<div class="items-table">
-		</div>
+    <div class="popup_container">
+      <div class="popup_box">
+        <table width="100%">
+          <tr>
+            <td>
+              <h1 id="preview_text">Preview</h1></td>
+            <td>
+              <button id="popup_close">close X</button>
+            </td>
+          </tr>
+        </table>
+        <div id="preview_content"></div>
+      </div>
+    </div>
 
-		<!--top right box for Notice & MyAccount-->
-		<div class="user_info_container">
-			<div class="triangle"></div>
-			<div class="account_info">
-				<div class="account_info_content">
-					<img src="images/student.png" style="height: 120px;">
-					<br />
-					<p>Username: student</p>
-					<br />
-					<p>
-						<button class="logout_btn">Logout</button>
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="user_notice_container">
-			<div class="triangle" style="right: 160px;"></div>
-			<div class="account_notice">
-				<div class="account_notice_content">
-                    0123456789
-				</div>
-			</div>
-		</div>
-		
-		<a href="#" class="go-top">Go Top</a>
-	</div>
+    <div class="items-table">
+    </div>
+
+    <!--top right box for Notice & MyAccount-->
+    <div class="user_info_container">
+      <div class="triangle"></div>
+      <div class="account_info">
+        <div class="account_info_content">
+          <img src="images/student.png" style="height: 120px;">
+          <br />
+          <p>Username: student</p>
+          <br />
+          <p>
+            <button class="logout_btn">Logout</button>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="user_notice_container">
+      <div class="triangle" style="right: 160px;"></div>
+      <div class="account_notice">
+        <div class="account_notice_content">
+        </div>
+      </div>
+    </div>
+
+    <a href="#" class="go-top">Go Top</a>
+  </div>
 </body>
 
 </html>
