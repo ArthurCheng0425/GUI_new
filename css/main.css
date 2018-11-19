@@ -116,7 +116,6 @@ body {
 }
 
 .account_info {
-  content: "";
   height: 300px;
   width: 250px;
   background-color: white;
@@ -125,6 +124,17 @@ body {
   color: black;
   top: 85px;
   right: 10px;
+  position: fixed;
+}
+
+.account_notice {
+  height: 600px;
+  width: 500px;
+  background-color: white;
+  border: 1px solid grey;
+  border-radius: 5px;
+  top: 85px;
+  right: 30px;
   position: fixed;
 }
 
@@ -140,7 +150,7 @@ body {
   z-index: 2;
 }
 
-.account_info_content {
+.account_info_content, .account_notice_content {
   margin: 30px;
 }
 

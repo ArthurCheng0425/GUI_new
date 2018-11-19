@@ -317,6 +317,16 @@ $(document).ready(function () {
 		else
 			$(".user_info_container").hide();
 	});
+  
+    //for top right user Notice
+    var userNoticeCount = 0;
+    $(".user_notice_container").hide();
+    $("#notice").click(function () {
+		if (userNoticeCount++ % 2 == 0)
+			$(".user_notice_container").fadeIn();
+		else
+			$(".user_notice_container").hide();
+	});
 
 	//for logout
 	$(".logout_btn").click(function () {
