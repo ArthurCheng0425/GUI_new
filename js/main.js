@@ -287,6 +287,12 @@ $(document).ready(function () {
 								value.pages <= pages) {
 								createItems(i++, value.title, value.country, value.language, value.imageLink, value.author);
 							}
+						} else if (language == "all" || category == "all") {
+							if (language == "all" && category == value.category && pages <= value.pages) {
+								createItems(i++, value.title, value.country, value.language, value.imageLink, value.author);
+							} else if (language == value.language && category == "all" && pages <= value.pages) {
+								createItems(i++, value.title, value.country, value.language, value.imageLink, value.author);
+							}
 						} else if (value.category == category && value.language == language && value.pages <= pages) {
 							createItems(i++, value.title, value.country, value.language, value.imageLink, value.author);
 						}
