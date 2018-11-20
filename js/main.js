@@ -56,9 +56,9 @@ $(document).ready(function () {
 							createItems(i++, value.title, value.country, value.language, value.imageLink, value.author);
 						}
 					});
-                    $('.reserve').click(function(){
-                        showNotice();
-                    });
+					$('.reserve').click(function () {
+						showNotice();
+					});
 					$('.preview').click(function () {
 						previewBook($(this).attr('form'), $(this).attr('name'), $(this).attr('value'));
 					});
@@ -86,9 +86,9 @@ $(document).ready(function () {
 							createItems(i++, value.title, value.country, value.language, value.imageLink, value.author);
 						}
 					});
-                    $('.reserve').click(function(){
-                        showNotice();
-                    });
+					$('.reserve').click(function () {
+						showNotice();
+					});
 					$('.preview').click(function () {
 						previewBook($(this).attr('form'), $(this).attr('name'), $(this).attr('value'));
 					});
@@ -131,9 +131,9 @@ $(document).ready(function () {
 								});
 							}
 						});
-                        $('.reserve').click(function(){
-                            showNotice();
-                        });
+						$('.reserve').click(function () {
+							showNotice();
+						});
 					});
 				}, 2000);
 		}
@@ -146,20 +146,14 @@ $(document).ready(function () {
 	$("#to").on("change", function () {
 		publicationDate();
 	});
-  
-    //FOR NOTICE
-        var numOfNotice = 0;
-    $('.badge').hide();
-    $('#notice').click(function(){
-        numOfNotice = 0;
-        $('.badge').hide();
-    });
-  
-    function showNotice(){
-        alert("You have reversed the book, \nPlease check your notice.");
-        $('.badge').show();
-        $('.badge').html(++numOfNotice);
-    }
+
+	//FOR NOTICE
+	var numOfNotice = 0;
+	$('.badge').hide();
+	$('#notice').click(function () {
+		numOfNotice = 0;
+		$('.badge').hide();
+	});
 
 	//function for show all items
 	function showBook() {
@@ -170,11 +164,11 @@ $(document).ready(function () {
 				$(".items-table").append("<div class='items' style='height: 35px;'><h2 style='margin-left:20px;'>All \\ Book<h2></div>");
 				$.each(result, function (index, value) {
 					//createItems((index + 1), value.title, value.country, value.language, value.imageLink, value.author);
-                    createItemsAsPhoto((index + 1), value.title, value.country, value.language, value.imageLink, value.author);
+					createItemsAsPhoto((index + 1), value.title, value.country, value.language, value.imageLink, value.author);
 				});
-                $('.reserve').click(function(){
-                    showNotice();
-                });
+				$('.reserve').click(function () {
+					showNotice();
+				});
 				$('.preview').click(function () {
 					previewBook($(this).attr('form'), $(this).attr('name'), $(this).attr('value'));
 				});
@@ -243,9 +237,9 @@ $(document).ready(function () {
 							createItems(i++, value.title, value.country, value.language, value.imageLink, value.author);
 						}
 					});
-                    $('.reserve').click(function(){
-                        showNotice();
-                    });
+					$('.reserve').click(function () {
+						showNotice();
+					});
 					$('.preview').click(function () {
 						previewBook($(this).attr('form'), $(this).attr('name'), $(this).attr('value'));
 					});
@@ -323,15 +317,15 @@ $(document).ready(function () {
 							} else if (language == value.language && category == "all" && pages >= value.pages) {
 								createItems(i++, value.title, value.country, value.language, value.imageLink, value.author);
 							} else if (language == "all" && category == "all" && pages >= value.pages) {
-                                createItems(i++, value.title, value.country, value.language, value.imageLink, value.author);
-                            }
+								createItems(i++, value.title, value.country, value.language, value.imageLink, value.author);
+							}
 						} else if (value.category == category && value.language == language && value.pages <= pages) {
 							createItems(i++, value.title, value.country, value.language, value.imageLink, value.author);
 						}
 					});
-                    $('.reserve').click(function(){
-                        showNotice();
-                    });
+					$('.reserve').click(function () {
+						showNotice();
+					});
 					$('.preview').click(function () {
 						previewBook($(this).attr('form'), $(this).attr('name'), $(this).attr('value'));
 					});
@@ -352,24 +346,43 @@ $(document).ready(function () {
 		else
 			$(".user_info_container").hide();
 	});
-  
-    //for top right user Notice
-    var userNoticeCount = 0;
-    $(".user_notice_container").hide();
-	for(i = 0; i < 7; i++){
-		let str = "<div style='height: 100px; width: auto; border: 1px solid black; margin: 5px;'>Book " + (i+1) + 
-			"<button style='margin-left: 350px; margin-top: 60px;' class='cancelReserve'>Cancel</button></div>";
-		$(".account_notice_content").append(str);
+
+	//for top right user Notice
+	var userNoticeCount = 0;
+	var reseved_count = 0;
+	if ($('#charaters').text() === "student") {
+		reseved_count = 5;
+	} else if ($('#charaters').text() === "alumni") {
+		reseved_count = 3;
+	} else {
+		reseved_count = 10;
 	}
-	$(".cancelReserve").click(function(){
-		$(this).parent().remove();
-	});
-    $("#notice").click(function () {
+	var now_reserved = 0;
+	var reserved_str = "<div style='height: 100px; width: auto; border: 1px solid black; margin: 5px;'>Book " + 
+		"<button style='margin-left: 350px; margin-top: 60px;' class='cancelReserve'>Cancel</button></div>";
+	$(".user_notice_container").hide();
+	$("#notice").click(function () {
 		if (userNoticeCount++ % 2 == 0)
 			$(".user_notice_container").fadeIn();
 		else
 			$(".user_notice_container").hide();
 	});
+
+	function showNotice() {
+		if (now_reserved++ < reseved_count) {
+			alert("You have reversed the book, \nPlease check your notice.");
+			$('.badge').show();
+			$('.badge').html(++numOfNotice);
+			$(".account_notice_content").append(reserved_str);
+			console.log(now_reserved);
+		} else {
+			alert("You have limited to resere the book.");
+		}
+		$(".cancelReserve").click(function () {
+			$(this).parent().remove();
+			now_reserved = $('.account_notice_content').children().length;
+		});
+	}
 
 	//for logout
 	$(".logout_btn").click(function () {
@@ -486,10 +499,11 @@ $(document).ready(function () {
 			'</div>';
 		$(".items-table").append(str);
 	}
-  
-    var c = 0;
-    function createItemsAsPhoto(index, title, country, language, imageLink, author){
-      let str = '<div class="items">' +
+
+	var c = 0;
+
+	function createItemsAsPhoto(index, title, country, language, imageLink, author) {
+		let str = '<div class="items">' +
 			'<b style="margin: 10px">' + index + '</b>' +
 			'<div class="bookName" style="margin-left: 150px; width: 600px;"><b>Book Title: ' + title + '</b><br/><br>' +
 			'<b>Country: ' + country + '</b><br/><br/>' +
@@ -501,7 +515,7 @@ $(document).ready(function () {
 			author + '" style="margin-bottom: 20px;">Preview</button>' +
 			'<button class="reserve" style="margin-left: 5px;">Reserve</button>' +
 			'</div>';
-      let str2 = '<div class="items" style="margin-left: 600px; margin-top: -184px; width: 600px;">' +
+		let str2 = '<div class="items" style="margin-left: 600px; margin-top: -184px; width: 600px;">' +
 			'<b style="margin: 10px">' + index + '</b>' +
 			'<div class="bookName" style="margin-left: 150px; width: 600px;"><b>Book Title: ' + title + '</b><br/><br>' +
 			'<b>Country: ' + country + '</b><br/><br/>' +
@@ -513,11 +527,11 @@ $(document).ready(function () {
 			author + '" style="margin-bottom: 20px;">Preview</button>' +
 			'<button class="reserve" style="margin-left: 5px;">Reserve</button>' +
 			'</div>';
-      if(c++ % 2 == 0)
-		$(".items-table").append(str);
-      else
-        $(".items-table").append(str2);
-    }
+		if (c++ % 2 == 0)
+			$(".items-table").append(str);
+		else
+			$(".items-table").append(str2);
+	}
 
 	//for view chapter
 	function viewChapter(img, title, author) {
@@ -527,75 +541,75 @@ $(document).ready(function () {
 		$('#preview_content').fadeIn(function () {
 			$('#preview_content').append(content);
 			$('#preview_content').append("<button id='backTobookDetails'>< Back</button>");
-            $('#backTobookDetails').click(function(){
-              previewBook(img, title, author);
-            });
-          var numPanels = $('.panel').length;
-          // if a panel is open, lower its z-idx
-          // otherwise, set zIdx back to original
-          function checkZ($aPanel) {
-            if ( $aPanel.hasClass('open') ) {
-              $aPanel.css('z-index','1');
-            } else {
-              // set z-index back to original stored in data
-              zIdx = $aPanel.data('zIdx');
-              $aPanel.css( 'z-index', zIdx );
-            }
-          }
-          // loop through all panels and reverse sort via zIdx
-          for (i=0; i<(numPanels); i++  ) {
-            var zIdx =  numPanels-i;
-            $('.panel').eq(i).css('z-index',zIdx).data('zIdx',zIdx);
-          }
-          // when clicking the front panel add class 'open' to panel
-          // if clicking bacl panel, remove 'open' from panel
-          $('.panel').on('click', '.front, .back', function() {
-            $(this).parent('.panel').toggleClass('open');
-            checkZ($(this).parent('.panel'));
-          });
+			$('#backTobookDetails').click(function () {
+				previewBook(img, title, author);
+			});
+			var numPanels = $('.panel').length;
+			// if a panel is open, lower its z-idx
+			// otherwise, set zIdx back to original
+			function checkZ($aPanel) {
+				if ($aPanel.hasClass('open')) {
+					$aPanel.css('z-index', '1');
+				} else {
+					// set z-index back to original stored in data
+					zIdx = $aPanel.data('zIdx');
+					$aPanel.css('z-index', zIdx);
+				}
+			}
+			// loop through all panels and reverse sort via zIdx
+			for (i = 0; i < (numPanels); i++) {
+				var zIdx = numPanels - i;
+				$('.panel').eq(i).css('z-index', zIdx).data('zIdx', zIdx);
+			}
+			// when clicking the front panel add class 'open' to panel
+			// if clicking bacl panel, remove 'open' from panel
+			$('.panel').on('click', '.front, .back', function () {
+				$(this).parent('.panel').toggleClass('open');
+				checkZ($(this).parent('.panel'));
+			});
 		});
-      var content = '<div class="flip-panel">'+ 
-      '<div class="panel">'+
-        '<div class="front">'+
-          '<div class="content">'+
-            '<img src="'+img+'" style="height: 450px; width: 300px; margin-top: -12px; margin-left: -12px;">'+
-          '</div>'+
-        '</div>'+
-        '<div class="back">'+
-          '<div class="content">'+
-            '<h2>Chapter 1</h2>'+
-            '<p>Mr. and Mrs. Dursley, of number four, Privet Drive, were proud to say that they were perfectly normal, thank you very much. They were the last people you\'d expect to be involved in anything strange or mysterious, because they just didn\'t hold with such nonsense. </p>'+
-            '<p>Mr. Dursley was the director of a firm called Grunnings, which made drills. He was a big, beefy man with hardly any neck, although he did have a very large mustache. Mrs. Dursley was thin and blonde and had nearly twice the usual amount of neck, which came in very useful as she spent so much of her time craning over garden fences, spying on the neighbors. The Dursleys had a small son called Dudley and in their opinion there was no finer boy anywhere. </p>'+
-          '</div>'+
-        '</div>'+
-      '</div>'+
-      '<div class="panel">'+
-        '<div class="front">'+
-          '<div class="content">'+
-            '<p>The Dursleys had everything they wanted, but they also had a secret, and their greatest fear was that somebody would discover it. They didn\'t think they could bear it if anyone found out about the Potters. Mrs. Potter was Mrs. Dursley\'s sister, but they hadn\'t met for several years; in fact, Mrs. Dursley pretended she didn\'t have a sister, because her sister and her good-for-nothing husband were as unDursleyish as it was possible to be. The Dursleys shuddered to think what the neighbors would say if the Potters arrived in the street. The Dursleys knew that the Potters had a small son, too, but they had never even seen him. This boy was another good reason for keeping the Potters away; they didn\'t want Dudley mixing with a child like that. </p><br/><br/><a class="book_hits_text_n">click to view next page<a>'+
-          '</div>'+
-        '</div>'+
-        '<div class="back">'+
-          '<div class="content">'+
-            '<p>When Mr. and Mrs. Dursley woke up on the dull, gray Tuesday our story starts, there was nothing about the cloudy sky outside to suggest that strange and mysterious things would soon be happening all over the country. Mr. Dursley hummed as he picked out his most boring tie for work, and Mrs. Dursley gossiped away happily as she wrestled a screaming Dudley into his high chair. </p>'+
-            '<p>None of them noticed a large, tawny owl flutter past the window. At half past eight, Mr. Dursley picked up his briefcase, pecked Mrs. Dursley on the cheek, and tried to kiss Dudley good-bye but missed, because Dudley was now having a tantrum and throwing his cereal at the walls. "Little tyke," chortled Mr. Dursley as he left the house. He got into his car and backed out of number four\'s drive. </p>'+
-            '<a class="book_hits_text_f">click to view front page<a>'+
-          '</div>'+
-        '</div>'+
-      '</div>  '+
-      '<div class="panel">'+
-        '<div class="front">'+
-          '<div class="content">'+
-            '<p>It was on the corner of the street that he noticed the first sign of something peculiar — a cat reading a map. For a second, Mr. Dursley didn\'t realize what he had seen — then he jerked his head around to look again. There was a tabby cat standing on the corner of Privet Drive, but there wasn\'t a map in sight. What could he have been thinking of? It must have been a trick of the light. </p>'+
-          '<p>Mr. Dursley blinked and stared at the cat. It stared back. As Mr. Dursley drove around the corner and up the road, he watched the cat in his mirror. It was now reading the sign that said Privet Drive — no, looking at the sign; cats couldn\'t read maps or signs. Mr. Dursley gave himself a little shake and put the cat out of his mind. </p>'+
-          '</div>'+
-        '</div>'+
-        '<div class="back">'+
-          '<div class="content" style="text-align: center; margin: auto;">'+
-            '<h1 style="margin-top: 200px;">The End</h1>'+
-          '</div>'+
-        '</div>'+
-      '</div>  '+
-   '</div>';
+		var content = '<div class="flip-panel">' +
+			'<div class="panel">' +
+			'<div class="front">' +
+			'<div class="content">' +
+			'<img src="' + img + '" style="height: 450px; width: 300px; margin-top: -12px; margin-left: -12px;">' +
+			'</div>' +
+			'</div>' +
+			'<div class="back">' +
+			'<div class="content">' +
+			'<h2>Chapter 1</h2>' +
+			'<p>Mr. and Mrs. Dursley, of number four, Privet Drive, were proud to say that they were perfectly normal, thank you very much. They were the last people you\'d expect to be involved in anything strange or mysterious, because they just didn\'t hold with such nonsense. </p>' +
+			'<p>Mr. Dursley was the director of a firm called Grunnings, which made drills. He was a big, beefy man with hardly any neck, although he did have a very large mustache. Mrs. Dursley was thin and blonde and had nearly twice the usual amount of neck, which came in very useful as she spent so much of her time craning over garden fences, spying on the neighbors. The Dursleys had a small son called Dudley and in their opinion there was no finer boy anywhere. </p>' +
+			'</div>' +
+			'</div>' +
+			'</div>' +
+			'<div class="panel">' +
+			'<div class="front">' +
+			'<div class="content">' +
+			'<p>The Dursleys had everything they wanted, but they also had a secret, and their greatest fear was that somebody would discover it. They didn\'t think they could bear it if anyone found out about the Potters. Mrs. Potter was Mrs. Dursley\'s sister, but they hadn\'t met for several years; in fact, Mrs. Dursley pretended she didn\'t have a sister, because her sister and her good-for-nothing husband were as unDursleyish as it was possible to be. The Dursleys shuddered to think what the neighbors would say if the Potters arrived in the street. The Dursleys knew that the Potters had a small son, too, but they had never even seen him. This boy was another good reason for keeping the Potters away; they didn\'t want Dudley mixing with a child like that. </p><br/><br/><a class="book_hits_text_n">click to view next page<a>' +
+			'</div>' +
+			'</div>' +
+			'<div class="back">' +
+			'<div class="content">' +
+			'<p>When Mr. and Mrs. Dursley woke up on the dull, gray Tuesday our story starts, there was nothing about the cloudy sky outside to suggest that strange and mysterious things would soon be happening all over the country. Mr. Dursley hummed as he picked out his most boring tie for work, and Mrs. Dursley gossiped away happily as she wrestled a screaming Dudley into his high chair. </p>' +
+			'<p>None of them noticed a large, tawny owl flutter past the window. At half past eight, Mr. Dursley picked up his briefcase, pecked Mrs. Dursley on the cheek, and tried to kiss Dudley good-bye but missed, because Dudley was now having a tantrum and throwing his cereal at the walls. "Little tyke," chortled Mr. Dursley as he left the house. He got into his car and backed out of number four\'s drive. </p>' +
+			'<a class="book_hits_text_f">click to view front page<a>' +
+			'</div>' +
+			'</div>' +
+			'</div>  ' +
+			'<div class="panel">' +
+			'<div class="front">' +
+			'<div class="content">' +
+			'<p>It was on the corner of the street that he noticed the first sign of something peculiar — a cat reading a map. For a second, Mr. Dursley didn\'t realize what he had seen — then he jerked his head around to look again. There was a tabby cat standing on the corner of Privet Drive, but there wasn\'t a map in sight. What could he have been thinking of? It must have been a trick of the light. </p>' +
+			'<p>Mr. Dursley blinked and stared at the cat. It stared back. As Mr. Dursley drove around the corner and up the road, he watched the cat in his mirror. It was now reading the sign that said Privet Drive — no, looking at the sign; cats couldn\'t read maps or signs. Mr. Dursley gave himself a little shake and put the cat out of his mind. </p>' +
+			'</div>' +
+			'</div>' +
+			'<div class="back">' +
+			'<div class="content" style="text-align: center; margin: auto;">' +
+			'<h1 style="margin-top: 200px;">The End</h1>' +
+			'</div>' +
+			'</div>' +
+			'</div>  ' +
+			'</div>';
 	}
 });
