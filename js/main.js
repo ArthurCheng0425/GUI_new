@@ -368,26 +368,30 @@ $(document).ready(function () {
 	});
 
 	var bookNameCount = 0;
+
 	function showNotice() {
 		let i = 0;
 		let d = new Date();
+		let count = 0;
 		let bookName = ["Things Fall Apart", "Fairy tales", "The Divine Comedy", "The Epic Of Gilgamesh", "The Book Of Job",
 						"One Thousand and One Nights", "Njál's Saga", "Pride and Prejudice", "Le Père Goriot", "Molloy, Malone Dies, The Unnamable, the trilogy", ];
-		let reserved_str = "<div style='height: 100px; width: auto; border: 1px solid black; margin: 5px; padding: 5px;'>Title: " + bookName[bookNameCount++ % 10] + "<br/>" +
-			"<br/>Reserved Date: " + d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear() + "<br/>" +
-			"<button style='margin-left: 700px; margin-top: 20px;' class='cancelReserve'>Cancel</button></div>";
 		if (now_reserved++ < reseved_count) {
+			let reserved_str = "<div style='height: 100px; width: auto; border: 1px solid black; margin: 5px; padding: 5px;' class='reservedItem'>Title: " +
+				"<a id='bookname'>" + bookName[bookNameCount++ % 10] + "</a><br/>" +
+				"<br/>Reserved Date: " + d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear() + "<br/>" +
+				"<button style='margin-left: 700px; margin-top: 20px;' class='cancelReserve'>Cancel</button></div>";
 			alert("You have reversed the book, \nPlease check your notice.");
 			$('.badge').show();
 			$('.badge').html(++numOfNotice);
 			$("#reserved_content").append(reserved_str);
-			console.log(now_reserved);
 		} else {
 			alert("You have limited to resere the book.");
 		}
-		$(".cancelReserve").click(function () {
-			$(this).parent().remove();
-			now_reserved = $('.account_notice_content').children().length;
+		$('.cancelReserve').one('click', function () {
+			if (confirm("Would you like to cancel the reserving?")) {
+				$(this).parent().remove();
+				now_reserved = $('.account_notice_content').children().length;
+			}
 		});
 	}
 
