@@ -356,6 +356,14 @@ $(document).ready(function () {
     //for top right user Notice
     var userNoticeCount = 0;
     $(".user_notice_container").hide();
+	for(i = 0; i < 3; i++){
+		let str = "<div style='height: 100px; width: auto; border: 1px solid black; margin: 5px;'>Book " + (i+1) + 
+			"<button style='margin-left: 350px; margin-top: 60px;' class='cancelReserve'>Cancel</button></div>";
+		$(".account_notice_content").append(str);
+	}
+	$(".cancelReserve").click(function(){
+		$(this).parent().remove();
+	});
     $("#notice").click(function () {
 		if (userNoticeCount++ % 2 == 0)
 			$(".user_notice_container").fadeIn();
