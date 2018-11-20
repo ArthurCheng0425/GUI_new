@@ -63,7 +63,7 @@
 			<h3 style="margin-left: 20px;">advance_search</h3>
 			<a class="advance_search_label">Categort: </a>
 			<select name="category" id="as_category" class="advance_search_input">
-			    <option value="all">All</option>
+				<option value="all">All</option>
 				<option value="Fiction">Fiction</option>
 				<option value="Prose">Prose</option>
 				<option value="Dissertation">Dissertation</option>
@@ -72,7 +72,7 @@
 			</select>
 			<a class="advance_search_label">Language: </a>
 			<select name="language" id="as_language" class="advance_search_input">
-			    <option value="all">All</option>
+				<option value="all">All</option>
 				<option value="English">English</option>
 				<option value="French">French</option>
 				<option value="Italian">Italian</option>
@@ -163,19 +163,37 @@
 				<div></div>
 			</div>
 		</div>
-		
+
 		<div class="popup_container">
 			<div class="popup_box">
 				<table width="100%">
 					<tr>
-						<td><h1 id="preview_text">Preview</h1></td>
+						<td>
+							<h1 id="preview_text">Preview</h1>
+						</td>
 						<td><button id="popup_close">close X</button></td>
 					</tr>
 				</table>
 				<div id="preview_content"></div>
 			</div>
 		</div>
-		
+
+		<div class="popup_container_reserved">
+			<div class="popup_box_reserved" style="overflow: scroll;">
+				<table width="100%">
+					<tr>
+						<td>
+							<h1 id="preview_text">Reserved Book</h1>
+						</td>
+						<td>
+							<button id="popup_close_reserved">close X</button>
+						</td>
+					</tr>
+				</table>
+				<div id="reserved_content"></div>
+			</div>
+		</div>
+
 		<div class="items-table">
 		</div>
 		<!--top right box for Notice & MyAccount-->
@@ -184,9 +202,9 @@
 			<div class="account_info">
 				<div class="account_info_content">
 					<img src="images/gruadStudent.png" style="height: 120px;">
-					<br/>
+					<br />
 					<p>Username: <a id="charaters">alumni</a></p>
-					<br/>
+					<br />
 					<p>
 						<button class="logout_btn">Logout</button>
 					</p>
