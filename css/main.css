@@ -71,7 +71,7 @@ body {
   left: 0px;
   margin-top: 95px;
   margin-left: 230px;
-  width: auto;
+  width: 1300px;;
   height: auto;
   background-color: white;
 }
@@ -136,6 +136,7 @@ body {
   top: 85px;
   right: 30px;
   position: fixed;
+  overflow: scroll;
 }
 
 .triangle {

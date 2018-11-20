@@ -356,7 +356,7 @@ $(document).ready(function () {
     //for top right user Notice
     var userNoticeCount = 0;
     $(".user_notice_container").hide();
-	for(i = 0; i < 3; i++){
+	for(i = 0; i < 7; i++){
 		let str = "<div style='height: 100px; width: auto; border: 1px solid black; margin: 5px;'>Book " + (i+1) + 
 			"<button style='margin-left: 350px; margin-top: 60px;' class='cancelReserve'>Cancel</button></div>";
 		$(".account_notice_content").append(str);
@@ -501,7 +501,7 @@ $(document).ready(function () {
 			author + '" style="margin-bottom: 20px;">Preview</button>' +
 			'<button class="reserve" style="margin-left: 5px;">Reserve</button>' +
 			'</div>';
-      let str2 = '<div class="items" style="margin-left: 600px; margin-top: -184px;">' +
+      let str2 = '<div class="items" style="margin-left: 600px; margin-top: -184px; width: 600px;">' +
 			'<b style="margin: 10px">' + index + '</b>' +
 			'<div class="bookName" style="margin-left: 150px; width: 600px;"><b>Book Title: ' + title + '</b><br/><br>' +
 			'<b>Country: ' + country + '</b><br/><br/>' +
