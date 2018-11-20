@@ -168,6 +168,7 @@ $(document).ready(function () {
 				});
 				$('.reserve').click(function () {
 					showNotice();
+					$(this).attr("disabled", "disabled").button('refresh');
 				});
 				$('.preview').click(function () {
 					previewBook($(this).attr('form'), $(this).attr('name'), $(this).attr('value'));
@@ -362,9 +363,11 @@ $(document).ready(function () {
 	$(".popup_box_reserved").hide();
 	$("#notice").click(function () {
 		$(".popup_box_reserved").fadeIn();
+		$('.items-table').css('opacity', '0.1');
 	});
 	$('#popup_close_reserved').click(function () {
 		$(".popup_box_reserved").hide();
+		$('.items-table').css('opacity', '1');
 	});
 
 	var bookNameCount = 0;
@@ -379,7 +382,8 @@ $(document).ready(function () {
 			let reserved_str = "<div style='height: 100px; width: auto; border: 1px solid black; margin: 5px; padding: 5px;' class='reservedItem'>Title: " +
 				"<a id='bookname'>" + bookName[bookNameCount++ % 10] + "</a><br/>" +
 				"<br/>Reserved Date: " + d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear() + "<br/>" +
-				"<button style='margin-left: 700px; margin-top: 20px;' class='cancelReserve'>Cancel</button></div>";
+				"<button style='margin-left: 700px; margin-top: 20px;' class='cancelReserve' id='" +bookName[(bookNameCount - 1) % 10] +
+				"'>Cancel</button></div>";
 			alert("You have reversed the book, \nPlease check your notice.");
 			$('.badge').show();
 			$('.badge').html(++numOfNotice);
@@ -388,9 +392,12 @@ $(document).ready(function () {
 			alert("You have limited to resere the book.");
 		}
 		$('.cancelReserve').one('click', function () {
-			if (confirm("Would you like to cancel the reserving?")) {
-				$(this).parent().remove();
-				now_reserved = $('.account_notice_content').children().length;
+			if ($(this).attr('id') === $('#bookname').text()) {
+				if (confirm("Would you like to cancel the reserving?")) {
+					$(this).parent().remove();
+					now_reserved = $('.account_notice_content').children().length;
+					$('.reserve').removeAttr("disabled").button('refresh');
+				}
 			}
 		});
 	}
