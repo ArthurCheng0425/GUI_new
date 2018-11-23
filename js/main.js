@@ -371,7 +371,7 @@ $(document).ready(function () {
 	});
 
 	var bookNameCount = 0;
-
+	$('.dialogBox').hide();
 	function showNotice() {
 		let i = 0;
 		let d = new Date();
@@ -384,7 +384,7 @@ $(document).ready(function () {
 				"<br/>Reserved Date: " + d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear() + "<br/>" +
 				"<button style='margin-left: 700px; margin-top: 20px;' class='cancelReserve' id='" +bookName[(bookNameCount - 1) % 10] +
 				"'>Cancel</button></div>";
-			alert("You have reversed the book, \nPlease check your notice.");
+			$('.dialogBox').fadeIn('slow').delay(2000).fadeOut('slow');
 			$('.badge').show();
 			$('.badge').html(++numOfNotice);
 			$("#reserved_content").append(reserved_str);
@@ -392,11 +392,17 @@ $(document).ready(function () {
 			alert("You have limited to resere the book.");
 		}
 		$('.cancelReserve').one('click', function () {
+			let reserved_str = "<div style='height: 100px; width: auto; border: 1px solid black; margin: 5px; padding: 5px;' class='reservedItem'>Title: " +
+				"<a id='bookname'>" + bookName[bookNameCount++ % 10] + "</a><br/>" +
+				"<br/>Reserved Date: " + d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear() + "<br/>" +
+				"<button style='margin-left: 700px; margin-top: 20px;' class='cancelReserve' id='" +bookName[(bookNameCount - 1) % 10] +
+				"'>Cancel</button></div>";
 			if ($(this).attr('id') === $('#bookname').text()) {
 				if (confirm("Would you like to cancel the reserving?")) {
 					$(this).parent().remove();
 					now_reserved = $('.account_notice_content').children().length;
 					$('.reserve').removeAttr("disabled").button('refresh');
+				}else{
 				}
 			}
 		});

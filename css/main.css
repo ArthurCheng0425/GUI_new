@@ -193,10 +193,15 @@ body {
 }
 
 /*POP UP BOX*/
-.popup_container, .popup_container_reserved {
+.popup_container, .popup_container_reserved , .dialogBox_container{
   margin: auto;
   width: 50%;
   height: 50%;
+}
+
+.dialogBox_container{
+  width: 33.3%;
+  text-align: center;
 }
 
 .popup_box, .popup_box_reserved {
@@ -230,6 +235,19 @@ body {
 
 #preview_img {
   margin-left: 50px;
+}
+
+.dialogBox{
+  width: 400px;
+  height: 50px;
+  background-color: darkseagreen;
+  border-radius: 10px;
+  margin-top: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  position: fixed;
+  border: 3px solid greenyellow;
 }
 
 /*For PREVIEW ANIM*/
