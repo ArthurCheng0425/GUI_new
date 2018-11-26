@@ -564,7 +564,7 @@ $(document).ready(function () {
 		});
 		$('#preview_content').fadeIn(function () {
 			$('#preview_content').append(content);
-			$('#preview_content').append("<button id='backTobookDetails'>< Back</button>");
+			$('#preview_content').append("<button id='backTobookDetails' style='margin-top:-50px;'>Back</button>");
 			$('#backTobookDetails').click(function () {
 				previewBook(img, title, author);
 			});
@@ -592,11 +592,11 @@ $(document).ready(function () {
 				checkZ($(this).parent('.panel'));
 			});
 		});
-		var content = '<div class="flip-panel">' +
+		var content = '<div class="flip-panel" style="margin-top: -50px;">' +
 			'<div class="panel">' +
 			'<div class="front">' +
 			'<div class="content">' +
-			'<img src="' + img + '" style="height: 450px; width: 300px; margin-top: -12px; margin-left: -12px;">' +
+			'<img src="' + img + '" style="height: 550px; width: 400px; margin-top: -12px; margin-left: -12px;">' +
 			'</div>' +
 			'</div>' +
 			'<div class="back">' +
