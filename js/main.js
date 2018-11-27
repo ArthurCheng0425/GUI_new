@@ -168,7 +168,7 @@ $(document).ready(function () {
 				});
 				$('.reserve').click(function () {
 					showNotice();
-					$(this).attr("disabled", "disabled").button('refresh');
+					$(this).attr("disabled", "disabled");
 				});
 				$('.preview').click(function () {
 					previewBook($(this).attr('form'), $(this).attr('name'), $(this).attr('value'));
@@ -372,39 +372,44 @@ $(document).ready(function () {
 
 	var bookNameCount = 0;
 	$('.dialogBox').hide();
+
 	function showNotice() {
 		let i = 0;
 		let d = new Date();
 		let count = 0;
-		let bookName = ["Things Fall Apart", "Fairy tales", "The Divine Comedy", "The Epic Of Gilgamesh", "The Book Of Job",
-						"One Thousand and One Nights", "Njál's Saga", "Pride and Prejudice", "Le Père Goriot", "Molloy, Malone Dies, The Unnamable, the trilogy", ];
+		let bookName = ["Things_Fall_Apart", "Fairy_tales", "The_Divine_Comedy", "The_Epic_Of_Gilgamesh", "The_Book_Of_Job",
+						"One_Thousand_and_One_Nights", "Njals_Saga", "Pride_and_Prejudice", "Le_Pere_Goriot", "Molloy_Malone_Dies_The_Unnamable_the_trilogy", ];
 		if (now_reserved++ < reseved_count) {
-			let reserved_str = "<div style='height: 100px; width: auto; border: 1px solid black; margin: 5px; padding: 5px;' class='reservedItem'>Title: " +
-				"<a id='bookname'>" + bookName[bookNameCount++ % 10] + "</a><br/>" +
+			$(this).attr("disabled", "disabled");
+			let reserved_str = "<div style='height: 100px; width: auto; border: 1px solid black; margin: 5px; padding: 5px;' class='reservedItem' id='" + bookName[bookNameCount % 10] + "'>Title: " +
+				"<a id='booknameRemove'>" + bookName[bookNameCount % 10] + "</a><br/>" +
 				"<br/>Reserved Date: " + d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear() + "<br/>" +
-				"<button style='margin-left: 700px; margin-top: 20px;' class='cancelReserve' id='" +bookName[(bookNameCount - 1) % 10] +
+				"<button class='undo' style='margin-left: 1000px; visibility:hidden;'>Undo Cancel</button>" +
+				"<button style='margin-left: 10px; margin-top: 20px;' class='cancelReserve' id='" + bookName[bookNameCount % 10] +
 				"'>Cancel</button></div>";
 			$('.dialogBox').fadeIn('slow').delay(2000).fadeOut('slow');
 			$('.badge').show();
 			$('.badge').html(++numOfNotice);
 			$("#reserved_content").append(reserved_str);
+			bookNameCount++;
 		} else {
 			alert("You have limited to resere the book.");
+			$(this).parent.prop("disabled", false);
 		}
-		$('.cancelReserve').one('click', function () {
-			let reserved_str = "<div style='height: 100px; width: auto; border: 1px solid black; margin: 5px; padding: 5px;' class='reservedItem'>Title: " +
-				"<a id='bookname'>" + bookName[bookNameCount++ % 10] + "</a><br/>" +
-				"<br/>Reserved Date: " + d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear() + "<br/>" +
-				"<button style='margin-left: 700px; margin-top: 20px;' class='cancelReserve' id='" +bookName[(bookNameCount - 1) % 10] +
-				"'>Cancel</button></div>";
-			if ($(this).attr('id') === $('#bookname').text()) {
-				if (confirm("Would you like to cancel the reserving?")) {
-					$(this).parent().remove();
-					now_reserved = $('.account_notice_content').children().length;
-					$('.reserve').removeAttr("disabled").button('refresh');
-				}else{
-				}
+		$('.cancelReserve').click(function () {
+			if ($(this).text() == "Comfirm") {
+				$(this).parent().remove();
 			}
+			now_reserved = $('.account_notice_content').children().length;
+			$('.reserve').removeAttr("disabled");
+			$(this).prev().css("visibility", "visible");
+			$(this).parent().addClass("forCancelReserve");
+			$(this).text("Comfirm");
+			$('.undo').click(function () {
+				$(this).next().text("Cancel");
+				$(this).parent().removeClass("forCancelReserve");
+				$(this).css("visibility", "hidden");
+			});
 		});
 	}
 
@@ -603,21 +608,20 @@ $(document).ready(function () {
 			'<div class="content">' +
 			'<h2>Chapter 1</h2>' +
 			'<p>Mr. and Mrs. Dursley, of number four, Privet Drive, were proud to say that they were perfectly normal, thank you very much. They were the last people you\'d expect to be involved in anything strange or mysterious, because they just didn\'t hold with such nonsense. </p>' +
-			'<p>Mr. Dursley was the director of a firm called Grunnings, which made drills. He was a big, beefy man with hardly any neck, although he did have a very large mustache. Mrs. Dursley was thin and blonde and had nearly twice the usual amount of neck, which came in very useful as she spent so much of her time craning over garden fences, spying on the neighbors. The Dursleys had a small son called Dudley and in their opinion there was no finer boy anywhere. </p>' +
+			'<p>Mr. Dursley was the director of a firm called Grunnings, which made drills. He was a big, beefy man with hardly any neck, although he did have a very large mustache. Mrs. Dursley was thin and blonde and had nearly twice the usual amount of neck, which came in very useful as she spent so much of her time craning over garden fences, spying on the neighbors. The Dursleys had a small son called Dudley and in their opinion there was no finer boy anywhere. </p><p>He found it a lot harder to concentrate on drills that afternoon and when he left the building at five o\'clock, he was still so worried that he walked straight into someone just outside the door. "Sorry," he grunted, as the tiny old man stumbled and almost fell. It was a few seconds before Mr. Dursley realized that the man was wearing a violet cloak. </p>' +
 			'</div>' +
 			'</div>' +
 			'</div>' +
 			'<div class="panel">' +
 			'<div class="front">' +
 			'<div class="content">' +
-			'<p>The Dursleys had everything they wanted, but they also had a secret, and their greatest fear was that somebody would discover it. They didn\'t think they could bear it if anyone found out about the Potters. Mrs. Potter was Mrs. Dursley\'s sister, but they hadn\'t met for several years; in fact, Mrs. Dursley pretended she didn\'t have a sister, because her sister and her good-for-nothing husband were as unDursleyish as it was possible to be. The Dursleys shuddered to think what the neighbors would say if the Potters arrived in the street. The Dursleys knew that the Potters had a small son, too, but they had never even seen him. This boy was another good reason for keeping the Potters away; they didn\'t want Dudley mixing with a child like that. </p><br/><br/><a class="book_hits_text_n">click to view next page<a>' +
+			'<p>He didn\'t seem at all upset at being almost knocked to the ground. On the contrary, his face split into a wide smile and he said in a squeaky voice that made passersby stare, "Don\'t be sorry, my dear sir, for nothing could upset me today! Rejoice, for You-Know-Who has gone at last!Even Muggles like yourself should be celebrating, this happy, happy day!"</p><p>The Dursleys had everything they wanted, but they also had a secret, and their greatest fear was that somebody would discover it. They didn\'t think they could bear it if anyone found out about the Potters. Mrs. Potter was Mrs. Dursley\'s sister, but they hadn\'t met for several years; in fact, Mrs. Dursley pretended she didn\'t have a sister, because her sister and her good-for-nothing husband were as unDursleyish as it was possible to be. The Dursleys shuddered to think what the neighbors would say if the Potters arrived in the street. The Dursleys knew that the Potters had a small son, too, but they had never even seen him. This boy was another good reason for keeping the Potters away; they didn\'t want Dudley mixing with a child like that. </p><p>As he pulled into the driveway of number four, the first thing he saw — and it didn\'t improve his mood — was the tabby cat he\'d spotted that morning. It was now sitting on his garden wall.</p><a class="book_hits_text_n" style="margin-left: 200px;">click to view next page<a>' +
 			'</div>' +
 			'</div>' +
 			'<div class="back">' +
 			'<div class="content">' +
 			'<p>When Mr. and Mrs. Dursley woke up on the dull, gray Tuesday our story starts, there was nothing about the cloudy sky outside to suggest that strange and mysterious things would soon be happening all over the country. Mr. Dursley hummed as he picked out his most boring tie for work, and Mrs. Dursley gossiped away happily as she wrestled a screaming Dudley into his high chair. </p>' +
-			'<p>None of them noticed a large, tawny owl flutter past the window. At half past eight, Mr. Dursley picked up his briefcase, pecked Mrs. Dursley on the cheek, and tried to kiss Dudley good-bye but missed, because Dudley was now having a tantrum and throwing his cereal at the walls. "Little tyke," chortled Mr. Dursley as he left the house. He got into his car and backed out of number four\'s drive. </p>' +
-			'<a class="book_hits_text_f">click to view front page<a>' +
+			'<p>None of them noticed a large, tawny owl flutter past the window. At half past eight, Mr. Dursley picked up his briefcase, pecked Mrs. Dursley on the cheek, and tried to kiss Dudley good-bye but missed, because Dudley was now having a tantrum and throwing his cereal at the walls. "Little tyke," chortled Mr. Dursley as he left the house. He got into his car and backed out of number four\'s drive. </p><p>And the old man hugged Mr. Dursley around the middle and walked off. Mr. Dursley stood rooted to the spot. He had been hugged by a complete stranger. He also thought he had been called a Muggle, whatever that was. He was rattled. He hurried to his car and set off for home, hoping he was imagining things, which he had never hoped before, because he didn\'t approve of imagination. </p><p>"Shoo!" said Mr. Dursley loudly. The cat didn\'t move. It just gave him a stern look. Was this normal cat behavior? </p><a class="book_hits_text_f">click to view front page<a>' +
 			'</div>' +
 			'</div>' +
 			'</div>  ' +
@@ -625,7 +629,7 @@ $(document).ready(function () {
 			'<div class="front">' +
 			'<div class="content">' +
 			'<p>It was on the corner of the street that he noticed the first sign of something peculiar — a cat reading a map. For a second, Mr. Dursley didn\'t realize what he had seen — then he jerked his head around to look again. There was a tabby cat standing on the corner of Privet Drive, but there wasn\'t a map in sight. What could he have been thinking of? It must have been a trick of the light. </p>' +
-			'<p>Mr. Dursley blinked and stared at the cat. It stared back. As Mr. Dursley drove around the corner and up the road, he watched the cat in his mirror. It was now reading the sign that said Privet Drive — no, looking at the sign; cats couldn\'t read maps or signs. Mr. Dursley gave himself a little shake and put the cat out of his mind. </p>' +
+			'<p>Mr. Dursley blinked and stared at the cat. It stared back. As Mr. Dursley drove around the corner and up the road, he watched the cat in his mirror. It was now reading the sign that said Privet Drive — no, looking at the sign; cats couldn\'t read maps or signs. Mr. Dursley gave himself a little shake and put the cat out of his mind. </p><p>As he had expected, Mrs. Dursley looked shocked and angry. After all, they normally pretended she didn\'t have a sister. "No," she said sharply. "Why?" "Funny stuff on the news," Mr. Dursley mumbled. "Owls... shooting stars... and there were a lot of funny-looking people in town today..." "So?" snapped Mrs. Dursley. "Well, I just thought... maybe... it was something to do with... you know... her crowd." </p>' +
 			'</div>' +
 			'</div>' +
 			'<div class="back">' +

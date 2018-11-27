@@ -249,11 +249,12 @@ body {
   padding: 20px;
   position: fixed;
   border: 3px solid greenyellow;
+  opacity: 0.9;
 }
 
 /*For PREVIEW ANIM*/
 #arrowRight {
-  width: 300px;
+  width: 100px;
   height: 400px;
   margin-top: -100%;
   margin-left: 350px;
@@ -324,7 +325,7 @@ body {
 }
 
 .panel .front {
-  background-color: lightgoldenrodyellow;
+  background-image: url("https://cdn.shopify.com/s/files/1/0405/8713/products/elp_pap_paper_white_4a32ade0-6327-4d91-b5bc-93ad516c6495_grande.jpg?v=1424595989");
   border-top: 2px solid black;
   border-right: 2px solid black;
   border-bottom: 2px solid black;
@@ -339,7 +340,7 @@ body {
 }
 
 .panel .back {
-  background-color: lightgoldenrodyellow;
+  background-image: url("https://cdn.shopify.com/s/files/1/0405/8713/products/elp_pap_paper_white_4a32ade0-6327-4d91-b5bc-93ad516c6495_grande.jpg?v=1424595989");
   border-top: 2px solid black;
   border-left: 2px solid black;
   border-bottom: 2px solid black;
@@ -384,7 +385,6 @@ body {
 }
 
 .book_hits_text_n {
-  margin-left: 120px;
   color: darkblue;
   text-decoration: underline;
   text-shadow: 1px 1px grey;
@@ -403,4 +403,9 @@ body {
   border-radius: 50%;
   background: red;
   color: white;
+}
+
+.forCancelReserve {
+  color: red;
+  font-weight: bold;
 }
