@@ -401,13 +401,13 @@ $(document).ready(function () {
 			$('.reserve').removeAttr("disabled");
 			$(this).css("visibility", "hidden"); //cancel
 			$(this).prev().css("visibility", "visible"); //undo cancel
-			$(this).prev().css("margin-left", "1000px"); //undo cancel
+			$(this).prev().css("margin-left", "900px"); //undo cancel
 			$(this).next().css("visibility", "visible"); //delete
 			$(this).next().css("margin-left", "-60px"); //delete
 			$(this).parent().addClass("forCancelReserve");
 			$('.undo').click(function () {
 				$(this).css("visibility", "hidden"); //undo cancel
-				$(this).css("margin-left", "900px"); //undo cancel
+				$(this).css("margin-left", "800px"); //undo cancel
 				$(this).next().css("visibility", "visible"); //cancel
 				$(this).next().next().css("visibility", "hidden"); //delete
 				$(this).next().next().css("margin-left", "10px"); //delete
