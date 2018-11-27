@@ -384,7 +384,7 @@ $(document).ready(function () {
 			let reserved_str = "<div style='height: 100px; width: auto; border: 1px solid black; margin: 5px; padding: 5px;' class='reservedItem'>Title: " +
 				"<a id='booknameRemove'>" + bookName[bookNameCount % 10] + "</a><br/>" +
 				"<br/>Reserved Date: " + d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear() + "<br/>" +
-				"<button class='undo' style='margin-left: 900px; visibility:hidden;'>Undo Cancel</button>" +
+				"<button class='undo' style='margin-left: 800px; visibility:hidden;'>Undo Cancel</button>" +
 				"<button style='margin-left: 10px; margin-top: 20px;' class='cancelReserve' id='" + bookName[bookNameCount % 10] +
 				"'>Cancel</button><button class='deletebook'style='margin-left: 10px; visibility:hidden;' >Delete</button></div>";
 			$('.dialogBox').fadeIn('slow').delay(2000).fadeOut('slow');
@@ -403,7 +403,7 @@ $(document).ready(function () {
 			$(this).prev().css("visibility", "visible"); //undo cancel
 			$(this).prev().css("margin-left", "1000px"); //undo cancel
 			$(this).next().css("visibility", "visible"); //delete
-			$(this).next().css("margin-left", "-50px"); //delete
+			$(this).next().css("margin-left", "-60px"); //delete
 			$(this).parent().addClass("forCancelReserve");
 			$('.undo').click(function () {
 				$(this).css("visibility", "hidden"); //undo cancel
