@@ -381,7 +381,7 @@ $(document).ready(function () {
 						"One_Thousand_and_One_Nights", "Njals_Saga", "Pride_and_Prejudice", "Le_Pere_Goriot", "Molloy_Malone_Dies_The_Unnamable_the_trilogy", ];
 		if (now_reserved++ < reseved_count) {
 			$(this).attr("disabled", "disabled");
-			let reserved_str = "<div style='height: 100px; width: auto; border: 1px solid black; margin: 5px; padding: 5px;' class='reservedItem'>Title: " +
+			let reserved_str = "<div style='height: 100px; width: auto; border: 1px solid black; margin:50px; padding: 5px;' class='reservedItem'>Title: " +
 				"<a id='booknameRemove'>" + bookName[bookNameCount % 10] + "</a><br/>" +
 				"<br/>Reserved Date: " + d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear() + "<br/>" +
 				"<button class='undo' style='margin-left: 800px; visibility:hidden;'>Undo Cancel</button>" +
