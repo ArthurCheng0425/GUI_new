@@ -381,12 +381,12 @@ $(document).ready(function () {
 						"One_Thousand_and_One_Nights", "Njals_Saga", "Pride_and_Prejudice", "Le_Pere_Goriot", "Molloy_Malone_Dies_The_Unnamable_the_trilogy", ];
 		if (now_reserved++ < reseved_count) {
 			$(this).attr("disabled", "disabled");
-			let reserved_str = "<div style='height: 100px; width: auto; border: 1px solid black; margin: 5px; padding: 5px;' class='reservedItem' id='" + bookName[bookNameCount % 10] + "'>Title: " +
+			let reserved_str = "<div style='height: 100px; width: auto; border: 1px solid black; margin: 5px; padding: 5px;' class='reservedItem'>Title: " +
 				"<a id='booknameRemove'>" + bookName[bookNameCount % 10] + "</a><br/>" +
 				"<br/>Reserved Date: " + d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear() + "<br/>" +
-				"<button class='undo' style='margin-left: 1000px; visibility:hidden;'>Undo Cancel</button>" +
+				"<button class='undo' style='margin-left: 900px; visibility:hidden;'>Undo Cancel</button>" +
 				"<button style='margin-left: 10px; margin-top: 20px;' class='cancelReserve' id='" + bookName[bookNameCount % 10] +
-				"'>Cancel</button></div>";
+				"'>Cancel</button><button class='deletebook'style='margin-left: 10px; visibility:hidden;' >Delete</button></div>";
 			$('.dialogBox').fadeIn('slow').delay(2000).fadeOut('slow');
 			$('.badge').show();
 			$('.badge').html(++numOfNotice);
@@ -397,20 +397,27 @@ $(document).ready(function () {
 			$(this).parent.prop("disabled", false);
 		}
 		$('.cancelReserve').click(function () {
-			if ($(this).text() == "Comfirm") {
-				$(this).parent().remove();
-			}
 			now_reserved = $('.account_notice_content').children().length;
 			$('.reserve').removeAttr("disabled");
-			$(this).prev().css("visibility", "visible");
+			$(this).css("visibility", "hidden"); //cancel
+			$(this).prev().css("visibility", "visible"); //undo cancel
+			$(this).prev().css("margin-left", "1000px"); //undo cancel
+			$(this).next().css("visibility", "visible"); //delete
+			$(this).next().css("margin-left", "-50px"); //delete
 			$(this).parent().addClass("forCancelReserve");
-			$(this).text("Comfirm");
 			$('.undo').click(function () {
-				$(this).next().text("Cancel");
+				$(this).css("visibility", "hidden"); //undo cancel
+				$(this).css("margin-left", "900px"); //undo cancel
+				$(this).next().css("visibility", "visible"); //cancel
+				$(this).next().next().css("visibility", "hidden"); //delete
+				$(this).next().next().css("margin-left", "10px"); //delete
 				$(this).parent().removeClass("forCancelReserve");
 				$(this).css("visibility", "hidden");
 			});
 		});
+		$('.deletebook').click(function(){
+			$(this).parent().remove();
+		})
 	}
 
 	//for logout
