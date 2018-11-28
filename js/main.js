@@ -29,9 +29,9 @@ $(document).ready(function () {
   });
 
   //For Reload page & view all
-  showBook();
+  showBook(1, 2000);
   $("#view_book").click(function () {
-    showBook();
+    showBook(1, 2000);
   });
   $("#view_software").click(function () {
     showSoftware();
@@ -42,96 +42,31 @@ $(document).ready(function () {
 
   //For keywords Searching
   $("#go").click(function () {
-    let keywords = $("#search_bar").val();
-    let i = 1;
-    $(".items-table").empty();
-    $(".loading-animation").show();
-    setTimeout(
-      function () {
-        $(".loading-animation").hide();
-        $.getJSON("books.json", function (result) {
-          $(".items-table").append("<div class='items' style='height: 35px;'><h2 style='margin-left:20px;'>\"" + $("#search_bar").val() + "\" \\      Result: <h2></div>");
-          $.each(result, function (index, value) {
-            if (value.title.indexOf(keywords) != -1) {
-              createItems(i++, value.title, value.country, value.language, value.imageLink, value.author);
-            }
-          });
-          $('.reserve').click(function () {
-            showNotice();
-            $(this).attr("disabled", "disabled");
-          });
-          $('.preview').click(function () {
-            previewBook($(this).attr('form'), $(this).attr('name'), $(this).attr('value'));
-          });
-          $('#popup_close').click(function () {
-            $('.popup_box').fadeOut();
-            $('.items-table').css('opacity', '1');
-          });
-        });
-      }, 2000);
-  });
-
-  //For keywords Searching
-  $("#search_bar").change(function () {
-    let keywords = $("#search_bar").val();
-    let i = 1;
-    $(".items-table").empty();
-    $(".loading-animation").show();
-    setTimeout(
-      function () {
-        $(".loading-animation").hide();
-        $.getJSON("books.json", function (result) {
-          $(".items-table").append("<div class='items' style='height: 35px;'><h2 style='margin-left:20px;'>\"" + $("#search_bar").val() + "\" \\      Result: <h2></div>");
-          $.each(result, function (index, value) {
-            if (value.title.indexOf(keywords) != -1) {
-              createItems(i++, value.title, value.country, value.language, value.imageLink, value.author);
-            }
-          });
-          $('.reserve').click(function () {
-            showNotice();
-          });
-          $('.preview').click(function () {
-            previewBook($(this).attr('form'), $(this).attr('name'), $(this).attr('value'));
-          });
-          $('#popup_close').click(function () {
-            $('.popup_box').fadeOut();
-            $('.items-table').css('opacity', '1');
-          });
-        });
-      }, 2000);
-  });
-
-  //For Category & Language Searching
-  $(".sn-filter").click(function () {
-    let header = $(this).attr("headers");
-    let selected_type = $(this).attr("id");
-    let isType = true;
-    if (selected_type == "view_book" || selected_type == "view_magazine" || selected_type == "view_software") {
-      isType = false;
-    }
-    let i = 1;
-    $(".items-table").empty();
-    $(".loading-animation").show();
-    if (isType) {
+    function goClick(typeOfItem, second) {
+      let keywords = $("#search_bar").val();
+      let i = 1;
+      $(".items-table").empty();
+      $(".loading-animation").show();
       setTimeout(
         function () {
           $(".loading-animation").hide();
           $.getJSON("books.json", function (result) {
-            $(".items-table").append("<div class='items' style='height: 35px;'><h2 style='margin-left:20px;'>" +
-              header + " \\ " + selected_type +
-              "<h2></div>");
-            $.each(result, function (index, value) {
-              if (selected_type == value.language || selected_type == value.category) {
-                createItems(i++, value.title, value.country, value.language, value.imageLink, value.author);
-                $('.preview').click(function () {
-                  previewBook($(this).attr('form'), $(this).attr('name'), $(this).attr('value'));
-                });
-                $('#popup_close').click(function () {
-                  $('.popup_box').fadeOut();
-                  $('.items-table').css('opacity', '1');
-                });
-              }
-            });
+            $(".items-table").append("<div class='items' style='height: 35px;'><h2 style='margin-left:20px;'>\"" + $("#search_bar").val() + "\" \\Result<h2>" +
+              "<button class='btn' id='showList'><img src='images/list.png' style='height:20px; width:20px;'></button>" +
+              "<button id='showMany'><img src='images/many.png' style='height:20px; width:20px;'></button></div>");
+            if (typeOfItem == 1) {
+              $.each(result, function (index, value) {
+                if (value.title.indexOf(keywords) != -1) {
+                  createItems(i++, value.title, value.country, value.language, value.imageLink, value.author);
+                }
+              });
+            } else {
+              $.each(result, function (index, value) {
+                if (value.title.indexOf(keywords) != -1) {
+                  createItemsAsPhoto(i++, value.title, value.country, value.language, value.imageLink, value.author);
+                }
+              });
+            }
             $('.reserve').click(function () {
               showNotice();
               $(this).attr("disabled", "disabled");
@@ -143,9 +78,127 @@ $(document).ready(function () {
               $('.popup_box').fadeOut();
               $('.items-table').css('opacity', '1');
             });
+            $('#showList').click(function () {
+              goClick(1, 0);
+            });
+            $('#showMany').click(function () {
+              goClick(4, 0);
+            });
           });
-        }, 2000);
+        }, second);
     }
+    goClick(1, 2000);
+  });
+
+  //For keywords Searching
+  $("#search_bar").change(function () {
+    function searchClick(typeOfItem, second) {
+      let keywords = $("#search_bar").val();
+      let i = 1;
+      $(".items-table").empty();
+      $(".loading-animation").show();
+      setTimeout(
+        function () {
+          $(".loading-animation").hide();
+          $.getJSON("books.json", function (result) {
+            $(".items-table").append("<div class='items' style='height: 35px;'><h2 style='margin-left:20px;'>\"" + $("#search_bar").val() + "\" \\Result<h2>" +
+              "<button class='btn' id='showList'><img src='images/list.png' style='height:20px; width:20px;'></button>" +
+              "<button id='showMany'><img src='images/many.png' style='height:20px; width:20px;'></button></div>");
+            if (typeOfItem == 1) {
+              $.each(result, function (index, value) {
+                if (value.title.indexOf(keywords) != -1) {
+                  createItems(i++, value.title, value.country, value.language, value.imageLink, value.author);
+                }
+              });
+            } else {
+              $.each(result, function (index, value) {
+                if (value.title.indexOf(keywords) != -1) {
+                  createItemsAsPhoto(i++, value.title, value.country, value.language, value.imageLink, value.author);
+                }
+              });
+            }
+            $('.reserve').click(function () {
+              showNotice();
+              $(this).attr("disabled", "disabled");
+            });
+            $('.preview').click(function () {
+              previewBook($(this).attr('form'), $(this).attr('name'), $(this).attr('value'));
+            });
+            $('#popup_close').click(function () {
+              $('.popup_box').fadeOut();
+              $('.items-table').css('opacity', '1');
+            });
+            $('#showList').click(function () {
+              searchClick(1, 0);
+            });
+            $('#showMany').click(function () {
+              searchClick(4, 0);
+            });
+          });
+        }, second);
+    }
+    searchClick(1, 2000);
+  });
+
+  //For Category & Language Searching
+  $(".sn-filter").click(function () {
+    let header = $(this).attr("headers");
+    let selected_type = $(this).attr("id");
+
+    function typeClick(typeOfItem, second) {
+      let isType = true;
+      if (selected_type == "view_book" || selected_type == "view_magazine" || selected_type == "view_software") {
+        isType = false;
+      }
+      let i = 1;
+      $(".items-table").empty();
+      $(".loading-animation").show();
+      if (isType) {
+        setTimeout(
+          function () {
+            $(".loading-animation").hide();
+            $.getJSON("books.json", function (result) {
+              $(".items-table").append("<div class='items' style='height: 35px;'><h2 style='margin-left:20px;'>" + header + " \\ " + selected_type + "<h2>" +
+                "<button class='btn' id='showList'><img src='images/list.png' style='height:20px; width:20px;'></button>" +
+                "<button id='showMany'><img src='images/many.png' style='height:20px; width:20px;'></button></div>");
+              $.each(result, function (index, value) {
+                if (selected_type == value.language || selected_type == value.category) {
+                  if (typeOfItem == 1) {
+                    createItems(i++, value.title, value.country, value.language, value.imageLink, value.author);
+                  } else {
+                    createItemsAsPhoto(i++, value.title, value.country, value.language, value.imageLink, value.author);
+                  }
+                  $('.preview').click(function () {
+                    previewBook($(this).attr('form'), $(this).attr('name'), $(this).attr('value'));
+                  });
+                  $('#popup_close').click(function () {
+                    $('.popup_box').fadeOut();
+                    $('.items-table').css('opacity', '1');
+                  });
+                }
+              });
+              $('.reserve').click(function () {
+                showNotice();
+                $(this).attr("disabled", "disabled");
+              });
+              $('.preview').click(function () {
+                previewBook($(this).attr('form'), $(this).attr('name'), $(this).attr('value'));
+              });
+              $('#popup_close').click(function () {
+                $('.popup_box').fadeOut();
+                $('.items-table').css('opacity', '1');
+              });
+              $('#showList').click(function () {
+                typeClick(1, 0);
+              });
+              $('#showMany').click(function () {
+                typeClick(4, 0);
+              });
+            });
+          }, second);
+      }
+    }
+    typeClick(1, 2000)
   });
 
   //For PUBLICATION DATE Searching
@@ -165,18 +218,23 @@ $(document).ready(function () {
   });
 
   //function for show all items
-  function showBook() {
+  function showBook(typeOfItem, second) {
     $(".items-table").empty();
-    $(".loading-animation").delay(2000).show(function () {
+    $(".loading-animation").delay(second).show(function () {
       $(".loading-animation").hide();
       $.getJSON("books.json", function (result) {
         $(".items-table").append("<div class='items' style='height: 35px;'><h2 style='margin-left:20px;'>All \\ Book</h2>" +
           "<button class='btn' id='showList'><img src='images/list.png' style='height:20px; width:20px;'></button>" +
           "<button id='showMany'><img src='images/many.png' style='height:20px; width:20px;'></button></div>");
-        $.each(result, function (index, value) {
-          createItems((index + 1), value.title, value.country, value.language, value.imageLink, value.author);
-          //createItemsAsPhoto((index + 1), value.title, value.country, value.language, value.imageLink, value.author);
-        });
+        if (typeOfItem == 1) {
+          $.each(result, function (index, value) {
+            createItems((index + 1), value.title, value.country, value.language, value.imageLink, value.author);
+          });
+        } else {
+          $.each(result, function (index, value) {
+            createItemsAsPhoto((index + 1), value.title, value.country, value.language, value.imageLink, value.author);
+          });
+        }
         $('.reserve').click(function () {
           showNotice();
           $(this).attr("disabled", "disabled");
@@ -187,6 +245,12 @@ $(document).ready(function () {
         $('#popup_close').click(function () {
           $('.popup_box').fadeOut();
           $('.items-table').css('opacity', '1');
+        });
+        $('#showList').click(function () {
+          showBook(1, 0);
+        });
+        $('#showMany').click(function () {
+          showBook(4, 0);
         });
       });
     });
@@ -238,29 +302,44 @@ $(document).ready(function () {
     $(".items-table").empty();
     $(".loading-animation").show();
     console.log("called");
-    setTimeout(
-      function () {
-        $(".loading-animation").hide();
-        $.getJSON("books.json", function (result) {
-          console.log("success");
-          $(".items-table").append("<div class='items' style='height: 35px;'><h2 style='margin-left:20px;'>From " + from + " To " + to + " Year \\      Result: <h2></div>");
-          $.each(result, function (index, value) {
-            if (value.year >= from && value.year <= to) {
-              createItems(i++, value.title, value.country, value.language, value.imageLink, value.author);
-            }
+
+    function dateClick(typeOfItem, second) {
+      setTimeout(
+        function () {
+          $(".loading-animation").hide();
+          $.getJSON("books.json", function (result) {
+            console.log("success");
+            $(".items-table").append("<div class='items' style='height: 35px;'><h2 style='margin-left:20px;'>From " + from + " To " + to + " Year \\   Result: <h2>"+"<button class='btn' id='showList'><img src='images/list.png' style='height:20px; width:20px;'></button>"+
+            "<button id='showMany'><img src='images/many.png' style='height:20px; width:20px;'></button></div>");
+            $.each(result, function (index, value) {
+              if (value.year >= from && value.year <= to) {
+                if(typeOfItem == 1){
+                  createItems(i++, value.title, value.country, value.language, value.imageLink, value.author);
+                }else{
+                  createItemsAsPhoto(i++, value.title, value.country, value.language, value.imageLink, value.author);
+                }
+              }
+            });
+            $('.reserve').click(function () {
+              showNotice();
+            });
+            $('.preview').click(function () {
+              previewBook($(this).attr('form'), $(this).attr('name'), $(this).attr('value'));
+            });
+            $('#popup_close').click(function () {
+              $('.popup_box').fadeOut();
+              $('.items-table').css('opacity', '1');
+            });
+            $('#showList').click(function () {
+              dateClick(1, 0);
+            });
+            $('#showMany').click(function () {
+              dateClick(4, 0);
+            });
           });
-          $('.reserve').click(function () {
-            showNotice();
-          });
-          $('.preview').click(function () {
-            previewBook($(this).attr('form'), $(this).attr('name'), $(this).attr('value'));
-          });
-          $('#popup_close').click(function () {
-            $('.popup_box').fadeOut();
-            $('.items-table').css('opacity', '1');
-          });
-        });
-      }, 2000);
+        }, second);
+    }
+    dateClick(1, 2000);
   }
 
   //Hover effect
