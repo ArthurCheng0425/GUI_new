@@ -309,13 +309,13 @@ $(document).ready(function () {
           $(".loading-animation").hide();
           $.getJSON("books.json", function (result) {
             console.log("success");
-            $(".items-table").append("<div class='items' style='height: 35px;'><h2 style='margin-left:20px;'>From " + from + " To " + to + " Year \\   Result: <h2>"+"<button class='btn' id='showList'><img src='images/list.png' style='height:20px; width:20px;'></button>"+
-            "<button id='showMany'><img src='images/many.png' style='height:20px; width:20px;'></button></div>");
+            $(".items-table").append("<div class='items' style='height: 35px;'><h2 style='margin-left:20px;'>From " + from + " To " + to + " Year \\   Result: <h2>" + "<button class='btn' id='showList'><img src='images/list.png' style='height:20px; width:20px;'></button>" +
+              "<button id='showMany'><img src='images/many.png' style='height:20px; width:20px;'></button></div>");
             $.each(result, function (index, value) {
               if (value.year >= from && value.year <= to) {
-                if(typeOfItem == 1){
+                if (typeOfItem == 1) {
                   createItems(i++, value.title, value.country, value.language, value.imageLink, value.author);
-                }else{
+                } else {
                   createItemsAsPhoto(i++, value.title, value.country, value.language, value.imageLink, value.author);
                 }
               }
@@ -469,13 +469,16 @@ $(document).ready(function () {
     let count = 0;
     let bookName = ["Things_Fall_Apart", "Fairy_tales", "The_Divine_Comedy", "The_Epic_Of_Gilgamesh", "The_Book_Of_Job",
 						"One_Thousand_and_One_Nights", "Njals_Saga", "Pride_and_Prejudice", "Le_Pere_Goriot", "Molloy_Malone_Dies_The_Unnamable_the_trilogy", ];
+    let bookImg = ["images/things-fall-apart.jpg", "images/fairy-tales.jpg", "images/the-divine-comedy.jpg", "images/the-epic-of-gilgamesh.jpg",
+                   "images/the-book-of-job.jpg", "images/one-thousand-and-one-nights.jpg", "images/njals-saga.jpg", "images/pride-and-prejudice.jpg", "images/le-pere-goriot.jpg", "images/molloy-malone-dies-the-unnamable.jpg"];
     if (now_reserved++ < reseved_count) {
       $(this).attr("disabled", "disabled");
-      let reserved_str = "<div style='height: 100px; width: auto; border: 1px solid black; margin:50px; padding: 5px;' class='reservedItem'>Title: " +
+      let reserved_str = "<div style='height: 150px; width: auto; border: 1px solid black; margin:50px; padding: 5px;' class='reservedItem'>Title: " +
         "<a id='booknameRemove'>" + bookName[bookNameCount % 10] + "</a><br/>" +
         "<br/>Reserved Date: " + d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear() + "<br/>" +
-        "<button class='undo' style='margin-left: 800px; visibility:hidden;'>Undo Cancel</button>" +
-        "<button style='margin-left: 10px; margin-top: 20px;' class='cancelReserve' id='" + bookName[bookNameCount % 10] +
+        "<img class='reservedImage' src='" + bookImg[bookNameCount % 10] + "'>" +
+        "<button class='undo' style='margin-left: 800px; top: -100px; visibility:hidden;'>Undo Cancel</button>" +
+        "<button style='margin-left: 10px;' class='cancelReserve' id='" + bookName[bookNameCount % 10] +
         "'>Cancel</button><button class='deletebook'style='margin-left: 10px; visibility:hidden;' >Delete</button></div>";
       $('.dialogBox').fadeIn('slow').delay(2000).fadeOut('slow');
       $('.badge').show();
