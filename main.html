@@ -90,7 +90,41 @@
         <option value="700">700</option>
         <option value="9999">above 700</option>
       </select>
-      <button id="as_btn">Search</button>
+      <p>
+        <a class="advance_search_label">Publication date</a>
+        <br/>
+        <a class="advance_search_label">Last <a class="datechose" id="m12">12 months</a><a class="datechose" id="y3"> 3 years</a><a class="datechose" id="y5"> 5 years</a></a>
+        <br/>
+        <input type="text" class="advance_search_label" placeholder="from" style="width: 100px;" id="as_from">
+        <input type="text" placeholder="to" style="width: 100px;" id="as_to">
+        <a class="advance_search_label">Author: </a>
+        <input type="text" id="as_author" placeholder="Author's name">
+      </p>
+      <div>
+        <div class="advance_search_label" style="background-color: #CCC; width: 300px; font-weight: bold;">Limit to</div>
+        <input type="checkbox" class="advance_search_label">Items with full text online
+        <br/>
+        <input type="checkbox" class="advance_search_label">Scholarly materials, including peer-reviewed
+        <br/>
+        <input type="checkbox" class="advance_search_label">Items in the library catalog
+        <br/>
+        <input type="checkbox" class="advance_search_label">Open Access items only
+        <br/>
+      </div>
+      <button id="as_btn" class="advance_search_label" style="margin-top: 10px;">Search</button>
+      <div style="transform: translate(350px, -128px);">
+        <div class="advance_search_label" style="background-color: #CCC; width: 300px; font-weight: bold;">Exclude from results</div>
+        <input type="checkbox" class="advance_search_label">Newspaper articles
+        <br/>
+        <input type="checkbox" class="advance_search_label">Book Reviews
+        <br/>
+        <input type="checkbox" class="advance_search_label">Dissertations
+        <br/>
+      </div>
+      <div style="transform: translate(700px, -206px);">
+        <div class="advance_search_label" style="background-color: #CCC; width: 350px; font-weight: bold;">Expand your results</div>
+        <input type="checkbox" class="advance_search_label">Include results from outside your library's collection
+      </div>
     </div>
     <div class="side-navigation-contain">
       <table width="200px" style="margin-top: 40px;">

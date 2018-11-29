@@ -70,25 +70,24 @@
 #arrowRight {
   width: 100px;
   height: 400px;
-  margin-top: -100%;
-  margin-left: 350px;
+  transform: translate(950px, -200px);
   transition: 1s ease-in-out;
 }
 
 #arrowRight:hover {
-  transform: translate(50px);
+  transform: translate(1000px, -200px);
   cursor: pointer;
+  opacity: 0.5;
 }
 
 .messagebox {
   text-align: center;
   width: 100px;
   background-color: #000;
-  opacity: 0.8;
+  opacity: 0.7;
   color: white;
   border-radius: 10px;
-  margin-left: 450px;
-  margin-top: -450px;
+  transform: translate(950px, -660px);
   padding: 5px;
 }
 

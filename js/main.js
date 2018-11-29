@@ -380,6 +380,18 @@ $(document).ready(function () {
   });
 
   //For Advice Searching
+  $("#m12").click(function(){
+    $("#as_from").val("2017");
+    $("#as_to").val("2018");
+  });
+  $("#y3").click(function(){
+    $("#as_from").val("2015");
+    $("#as_to").val("2018");
+  });
+  $("#y5").click(function(){
+    $("#as_from").val("2013");
+    $("#as_to").val("2018");
+  });
   $("#as_btn").click(function () {
     let category = $("#as_category").val();
     let language = $("#as_language").val();
@@ -387,6 +399,8 @@ $(document).ready(function () {
     let i = 1;
     $(".items-table").empty();
     $(".loading-animation").show();
+    $(".advance_search_bar").slideUp();
+    as_count++;
     setTimeout(
       function () {
         $(".loading-animation").hide();
@@ -596,6 +610,7 @@ $(document).ready(function () {
       "<p id='preview_content'>Language: " + lang[random] + "</p>" +
       "<p id='preview_content'>Year: " + year + "</p>" +
       "<p id='preview_content'>Page: " + page + "</p>" +
+      "<p style='margin:-400px 300px 0px 300px;'>Author Notes: <br/><br/>As multimedia applications are used increasingly in many embedded systems, power efficient design for the applications becomes more important than ever. This paper proposes a simple dynamic voltage scheduling technique, which suits the multimedia applications well. The proposed technique fully utilizes the idle intervals with buffers in a variable speed processor. The main theme of this paper is to determine the minimum buffer size to achieve the maximum energy saving in three cases: single-task, multiple subtasks, and multi-task. Experimental results show that the proposed technique is expected to obtain significant power reduction for several real-world multimedia applications.</p>" +
       "<img src='images/arrowRight.png' id='arrowRight'>" +
       "<div class='messagebox'>click to view chapter</div>";
     $('#preview_content').append(content);
