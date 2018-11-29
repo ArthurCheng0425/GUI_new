@@ -216,6 +216,7 @@
 
 .forCancelReserve {
   color: red;
+  background-color: #CCC;
   font-weight: bold;
 }
 
@@ -252,10 +253,10 @@
   width: 90px;
   margin-left: 250px;
   margin-top: -50px;
-  transition: transform .2s;
+  transition: transform .8s;
 }
 
 .reservedImage:hover {
   transform: scale(2);
-  transition: transform .2s;
+  transition: transform .8s;
 }
