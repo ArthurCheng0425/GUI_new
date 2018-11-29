@@ -97,7 +97,7 @@ $(document).ready(function () {
 
 				// show booked message in td if book room success
 				$(".booking_timetable tr:eq(" + row_index + ") td:eq(" + cell_index + ")").html("***Booked***");
-				$(".booking_timetable tr:eq(" + row_index + ") td:eq(" + cell_index + ")").css("backgroundColor", "#e0e0e0");
+				$(".booking_timetable tr:eq(" + row_index + ") td:eq(" + cell_index + ")").css("backgroundColor", "yellow");
 			} else {
 				$(".messageBox").fadeIn(1000);
 				$(".messageBox").text("Book Room Form Submit Fail!");
